@@ -11,15 +11,9 @@
 <body class="bg-black text-white">
     <header class="bg-black text-white py-4">
         <div class="container mx-auto flex justify-between items-center">
-            <div class="text-lg font-bold">
-                <H1>LPKS</H1>
-                <h2>Yayasan Cahaya Ayu</h2>
-            </div>
             {{-- Navbar --}}
             @include('pengguna_umum.layout.navbar')
             @yield('content')
-
-
         </div>
     </header>
     <main class="relative">
