@@ -8,30 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Userumum\HomeController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
-// Route::get('/', function () {
-//     return view('home');
-// });
-
-// //halaman pengguna umum
-// Route::get('/gambar', function () {
-//     return view('gambar');
-// });
-
-// //halaman admin
-// Route::get('/adminn', function () {
-//     return view('adminn.dashboard');
-// });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/gambar', [HomeController::class, 'gambar'])->name('gambar');
@@ -41,6 +18,9 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 
 Route::get('/login', [LoginController::class, 'index'])->name('admin.login');
+Route::post('/loginproses', [LoginController::class, 'login'])->name('admin.loginproses');
+Route::post('/logout', [LoginController::class, 'logout'])->name('admin.logout');
+
 
 Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
 

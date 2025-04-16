@@ -17,6 +17,12 @@
     <link rel="stylesheet" href="{{ asset('tmp_admin/dist/css/demo.css') }}">
     <link rel="stylesheet" href="{{ asset('tmp_admin/dist/css/style.css') }}">
 
+    <!-- Link CSS Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Link JS Bootstrap 5 (termasuk Popper.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 
 
 </head>
@@ -86,9 +92,13 @@
                                 <span>Informasi</span></a>
                         </li>
                         <li>
-                            <a href="informasi.html"><i class="ion ion-log-out"></i>
-                                <span>Logout</span></a>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                                <i class="ion ion-log-out"></i>
+                                <span>Logout</span>
+                            </a>
                         </li>
+
+
                     </ul>
 
                 </aside>
@@ -105,7 +115,33 @@
                 <div class="footer-right"></div>
             </footer>
         </div>
+
+        <!-- Modal Logout -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="logoutModalLabel">Logout</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Apakah Anda yakin ingin logout?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">Logout</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="{{ asset('tmp_admin/dist/modules/jquery.min.js') }}"></script>
     <script src="{{ asset('tmp_admin/dist/modules/popper.js') }}"></script>
@@ -124,7 +160,7 @@
         document.getElementById("year").textContent = new Date().getFullYear();
     </script>
 
-    <script>
+    {{-- <script>
         var ctx = document.getElementById("myChart").getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'line',
@@ -160,7 +196,7 @@
                 },
             }
         });
-    </script>
+    </script> --}}
     <script src="{{ asset('tmp_admin/dist/js/scripts.js') }}"></script>
     <script src="{{ asset('tmp_admin/dist/js/custom.js') }}"></script>
 

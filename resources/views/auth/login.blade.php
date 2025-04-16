@@ -11,21 +11,19 @@
 
 <body>
     <div class="wrapper">
-        <form action="#">
+        <form action="{{ route('admin.loginproses') }}" method="POST">
+            @csrf
             <h2>Login</h2>
             <div class="input-field">
-                <input type="text" required>
-                <label>Enter your email</label>
+                <input type="text" name="username">
+                <label>Username</label>
             </div>
             <div class="input-field">
-                <input type="password" required>
-                <label>Enter your password</label>
+                <input type="password" name="password" required>
+                <label>password</label>
             </div>
             <div class="forget">
-                <label for="remember">
-                    <input type="checkbox" id="remember">
-                    <p>Remember me</p>
-                </label>
+
                 <a href="#">Forgot password?</a>
             </div>
             <button type="submit">Log In</button>
