@@ -6,27 +6,32 @@
     <title>User</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('yayasan/style.css')}}">
+
 </head>
 
-<body class="bg-black text-white">
-    <header class="bg-black text-white py-4">
-        <div class="container mx-auto flex justify-between items-center">
+<body>
+    <header>
             {{-- Navbar --}}
             @include('pengguna_umum.layout.navbar')
             @yield('content')
-        </div>
     </header>
+    
     <main class="relative">
         <img alt="A woman in a green polka dot apron cleaning a table in a cozy kitchen"
             class="w-full h-screen object-cover opacity-50" height="1080"
             src="{{ asset('yayasan/UntitledDiagram.png') }}" width="1920" />
         <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-            <h1 class="text-5xl font-bold mb-4">
-                SELAMAT DATANG!
-            </h1>
-            <h2 class="text-xl text-yellow-500 mb-1">
-                Lembaga Pelatihan Kerja Swasta
+            <h2 class="text-5xl font-bold mb-4">
+                Lembaga Pelatihan Kerja Swasta <br>
+                Yayasan Cahaya Ayu
             </h2>
+
+            <article class="artic1">
+                <h1>Info Terbaru</h1>
+                <img src="" alt="">
+            </article>
+
             <p class="text-lg mb-6">
                 Yayasan Cahaya Ayu merupakan Lembaga Pelatihan kerja swasta yang menyediakan keterampilan pelatihan
                 tenaga kerja dan memenuhi kebutuhan masyarakat akan pelatihan keterampilan yang dapat meningkatkan
@@ -65,12 +70,19 @@
             </div>
             <section id="contact" class="container mx-auto py-8 text-center">
                 <h2 class="text-4xl font-bold mb-6"> HUBUNGI KAMI </h2>
-                <p class="text-lg">Email: info@cahayaayu.com</p>
-                <p class="text-lg">Telepon: +62 812 3456 7890</p>
                 <p class="text-lg">Alamat : JL DR WAHIDIN, JL UJUNG PANDANG II, GG GAHARU NO 2</p>
             </section>
         </div>
     </main>
+    <footer>
+        <p>&copy; 2023 Yayasan Cahaya Ayu Kota Pontianak</p>
+        <ul class="social-footer">
+          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+          <li><a href="#"><i class="fab fa-tiktok"></i></a></li>
+          <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+        </ul>
+      </footer>
 </body>
 
 </html>

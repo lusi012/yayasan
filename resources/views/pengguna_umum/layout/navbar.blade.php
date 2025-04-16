@@ -1,33 +1,27 @@
 @section('content')
-
     <nav>
-        <header class="bg-black text-white py-4">
-            <div class="container mx-auto flex justify-between items-center">
-                <div class="text-lg font-bold">
-                    <H1>LPKS</H1>
-                    <h2>Yayasan Cahaya Ayu</h2>
-                </div>
-            </div>
-        </header>
-
-        <ul class="flex space-x-4">
+        <div>
+            <H1>LPKS</H1>
+            <h2>Yayasan Cahaya Ayu</h2>
+        </div>
+        <ul>
             <li>
-                <a class="hover:text-gray-400" href="{{ route('home') }}">
+                <a href="{{ route('home') }}">
                     Home
                 </a>
             </li>
             <li>
-                <a class="hover:text-gray-400" href="{{ route('informasi') }}">
+                <a href="{{ route('informasi') }}">
                     Information
                 </a>
             </li>
             <li>
-                <a class="hover:text-gray-400" href="{{ route('gambar') }}">
+                <a href="{{ route('gambar') }}">
                     Gallery
                 </a>
             </li>
             <li>
-                <a class="hover:text-gray-400" href="{{ route('contact') }}">
+                <a href="{{ route('contact') }}">
                     Contact
                 </a>
             </li>
