@@ -23,10 +23,14 @@
         <section class="sec1">
             <article class="artsec1">
                 <h1>Tentang Perusahaan</h1>
-                <p>LPKS Cahaya Ayu merupakan sebuah instansi pemerintah, badan hukum atau perorangan yang memenuhi persyaratan untuk menyelenggarakan Pelatihan Kerja</p>
+                <p>LPKS Cahaya Ayu adalah sebuah instansi pemerintah, badan hukum atau perorangan yang memenuhi persyaratan untuk menyelenggarakan Pelatihan Kerja.
+                    Yayasan Cahaya Ayu merupakan Lembaga Pelatihan kerja swasta yang menyediakan keterampilan pelatihan tenaga kerja dan memenuhi kebutuhan masyarakat akan pelatihan keterampilan yang dapat meningkatkan peluang kerja dan kemandirian ekonomi.
+                </p>
             </article>
-            <article>
-                <img src="https://via.placeholder.com/80" alt="">
+            <article class="sec1img">
+
+                <img alt="image" src="{{ asset('tmp_admin/logo/gedung.jpeg') }}">
+
             </article>
         </section>
 
@@ -34,7 +38,7 @@
           <article class="box">
             <h2>Visi</h2>
             <div class="content">
-              <img src="https://via.placeholder.com/80" alt="Logo">
+                <img alt="image" src="{{ asset('tmp_admin/logo/logo1.jpg') }}">
               <p>
                 Yayasan Cahaya Ayu merupakan yayasan yang menyediakan pelatihan kerja swasta
                 bagi kebutuhan masyarakat yang putus sekolah dan ingin bekerja.
@@ -45,7 +49,7 @@
           <article class="box">
             <h2>Misi</h2>
             <div class="content">
-              <img src="https://via.placeholder.com/80" alt="Logo">
+                <img alt="image" src="{{ asset('tmp_admin/logo/logo1.jpg') }}">
               <p>
                 Misi dari Yayasan Cahaya Ayu ini adalah menyediakan tenaga kerja yang handal dan
                 berkualitas sehingga menjadikan tenaga kerja profesional.

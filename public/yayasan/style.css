@@ -159,13 +159,15 @@ footer p {
     justify-content: space-between;
     gap: 20px;
     padding: 20px;
+
 }
 
 .box {
     border-radius: 10px;
-    background-color: white;
     padding: 20px;
     flex: 1;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    background-color: white;
 }
 
 .box h2 {
@@ -177,24 +179,63 @@ footer p {
     align-items: center;
     justify-content: space-between;
     margin-top: 20px;
-    padding: 0px 20px;
+    padding: 0px 10px;
 }
 
 .content img {
-    width: auto;
-    height: 80px;
-    border: 1px solid #000;
+    width: 100px;
+    height: auto;
+    border-radius: 50%;
 }
 
 .content p {
+    color: black;
+    margin-left: 15px;
+    margin-right: 20px;
+    font-family: 'Open Sans', sans-serif;
     text-align: justify;
-    margin-left: 25px;
 }
+/*tentang perusahaan*/
 .sec1{
-    background-color: #f7f7f7;
+    display: flex;
     margin: 20px 20px 0px 20px;
     border-radius: 10px;
+
 }
 .sec1 .artsec1{
     padding: 20px;
+    border-radius: 10px;
+    margin-right: 20px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    max-height: 235px;
+
+}
+.artsec1 h1{
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+.artsec1 h1:first-letter {
+    color: #333399 ;
+    font-size: 30px;
+}
+
+.artsec1 h1::first-line {
+    color: #436b95;
+    font-size: 25px;
+}
+.artsec1 p{
+    text-indent: 40px;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    text-align: justify;
+    width: 565px;
+    margin-top: 10px;
+}
+.sec1img img{
+    width: 550px;
+    height: 300px;
+    border-radius: 10%;
+    margin-left: 20px;
 }
