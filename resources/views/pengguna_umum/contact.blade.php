@@ -29,8 +29,7 @@
                         <i class="fas fa-running"></i>
                     </div>
                     <h3>EMAIL</h3>
-                    <p>emailyayasan12@gmail.com</p>
-                    <p>adminyayasan0123@gmail.com</p>
+                    <p>wayan1407@gmail.com.com</p>
                 </div>
 
                 <!-- Phone -->
@@ -39,8 +38,7 @@
                         <i class="fas fa-phone-alt"></i>
                     </div>
                     <h3>TELEPHONE</h3>
-                    <p>+912 3 567 8987</p>
-                    <p>+912 5 252 3336</p>
+                    <p>0852-4503-5678</p>
                 </div>
 
                 <!-- Location -->
@@ -49,7 +47,7 @@
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
                     <h3>OUR OFFICE LOCATION</h3>
-                    <p>Jalan dr Wahidin gg. batas pandang lurus 250 m cari gg. gaharu 2 suka mulia Kecamatan Pontianak
+                    <p>Jalan dr Wahidin gg. batas pandang lurus &#177 500 m cari gg. gaharu 2 suka mulia Kecamatan Pontianak
                         Barat, Sungai
                         Jawi Luar, Kec. Pontianak Kota, Kota Pontianak, Kalimantan Barat 78114</p>
                 </div>

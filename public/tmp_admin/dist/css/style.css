@@ -1,11 +1,11 @@
 /**
  * Stisla
  * Stisla is a Bootstrap 4 Admin Template
- * 
+ *
  * @author Kodinger
  * @url http://stisla.multinity.com
  * @license MIT License
- * 
+ *
  */
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700');
 
@@ -1477,7 +1477,7 @@ table tr:hover .table-links {
 	width: auto;
 	display: inline-block;
 	font-size: 12px;
-}	
+}
 .card-chat .chat-content .chat-item .chat-details .chat-text img {
 	max-width: 100%;
 	margin-bottom: 10px;
@@ -2153,7 +2153,7 @@ table tr:hover .table-links {
 	.weather .weather-desc {
 		margin-left: 0;
 	}
-	
+
 	.statistic-details {
 		-ms-flex-wrap: wrap;
 		    flex-wrap: wrap;

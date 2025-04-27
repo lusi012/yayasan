@@ -1,8 +1,11 @@
 @section('content')
     <nav>
         <div>
-            <H1>LPKS</H1>
-            <h2>Yayasan Cahaya Ayu</h2>
+            <img alt="image" src="{{ asset('tmp_admin/logo/logo1.jpg') }}">
+            <section>
+                <H1>LPKS</H1>
+                <h2>Yayasan Cahaya Ayu</h2>
+            </section>
         </div>
         <ul>
             <li>

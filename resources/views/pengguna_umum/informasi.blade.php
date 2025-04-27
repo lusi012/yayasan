@@ -23,13 +23,13 @@
         <section class="sec1">
             <article class="artsec1">
                 <h1>Tentang Perusahaan</h1>
-                <p>LPKS Cahaya Ayu adalah sebuah instansi pemerintah, badan hukum atau perorangan yang memenuhi persyaratan untuk menyelenggarakan Pelatihan Kerja.
+                <p>LPKS Cahaya Ayu adalah sebuah instansi pemerintah, dibawah naungan departemen tenaga kerja (DEPNAKER).
                     Yayasan Cahaya Ayu merupakan Lembaga Pelatihan kerja swasta yang menyediakan keterampilan pelatihan tenaga kerja dan memenuhi kebutuhan masyarakat akan pelatihan keterampilan yang dapat meningkatkan peluang kerja dan kemandirian ekonomi.
                 </p>
             </article>
             <article class="sec1img">
 
-                <img alt="image" src="{{ asset('tmp_admin/logo/gedung.jpeg') }}">
+                <img alt="image" src="{{ asset('tmp_admin/logo/lowongan.jpeg') }}">
 
             </article>
         </section>
