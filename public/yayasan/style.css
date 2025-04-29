@@ -1,12 +1,16 @@
 body {
+
     background-color: rgb(214, 236, 250);
-    text-decoration: aliceblue;
     margin: 0;
     font-family: Arial, sans-serif;
 }
-
+main{
+    margin-top: 60px;
+}
 /*Nav*/
 nav {
+    top: 0;
+    position: fixed;
     background-color: rgb(198, 233, 255);
     display: flex;
     justify-content: space-between;
@@ -14,6 +18,7 @@ nav {
     width: 100%;
     height: 60px;
     box-sizing: border-box;
+    z-index: 1000;
 }
 
 nav ul {
@@ -39,10 +44,12 @@ nav ul li a:hover {
     padding: 5px;
     border-radius: 5px;
 }
-nav div{
+
+nav div {
     display: flex;
 }
-nav div img{
+
+nav div img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -163,6 +170,7 @@ footer p {
     margin-right: 6px;
     font-size: 1.3rem;
 }
+
 /* visi misi */
 .visimisi-container {
     display: flex;
@@ -204,14 +212,17 @@ footer p {
     text-align: justify;
     font-size: 16px;
 }
+
 /*tentang perusahaan*/
-.sec1{
+.sec1 {
     display: flex;
     margin: 20px 20px 0px 20px;
     border-radius: 10px;
 
 }
-.sec1 .artsec1{
+
+.sec1 .artsec1 {
+    margin-top: 10px;
     padding: 20px;
     border-radius: 10px;
     margin-right: 20px;
@@ -220,14 +231,16 @@ footer p {
     max-height: 350px;
 
 }
-.artsec1 h1{
+
+.artsec1 h1 {
     font-size: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
 
 }
+
 .artsec1 h1:first-letter {
-    color: #333399 ;
+    color: #333399;
     font-size: 30px;
 }
 
@@ -235,7 +248,8 @@ footer p {
     color: #436b95;
     font-size: 25px;
 }
-.artsec1 p{
+
+.artsec1 p {
     font-size: 18px;
     text-indent: 40px;
     color: black;
@@ -244,13 +258,15 @@ footer p {
     width: 565px;
     margin-top: 15px;
 }
-.sec1img img{
-    width: 650px;
+
+.sec1img img {
+    margin-top: 10px;
     height: 300px;
     border-radius: 3%;
 }
+
 /*main Home*/
-.judulhome h1{
+.judulhome h1 {
     text-align: center;
     font-size: 25px;
     padding: 10px;
@@ -259,7 +275,8 @@ footer p {
 .slideshow-container {
     position: relative;
     max-width: 100%;
-    height: 500px; /* Atur tinggi slideshow */
+    height: 500px;
+    /* Atur tinggi slideshow */
     overflow: hidden;
 }
 
@@ -270,23 +287,27 @@ footer p {
     object-fit: cover;
     position: absolute;
     top: 0;
-    transition: transform 1s ease-in-out; /* Tambahkan transisi untuk pergerakan */
+    transition: transform 1s ease-in-out;
+    /* Tambahkan transisi untuk pergerakan */
 }
 
 /* Gambar yang aktif tampil di posisi normal */
 .showing {
     display: block;
-    transform: translateX(0); /* Tampilkan gambar pada posisi 0 */
+    transform: translateX(0);
+    /* Tampilkan gambar pada posisi 0 */
 }
 
 /* Gambar yang sebelumnya bergerak keluar ke kiri */
 .slide.prev {
-    transform: translateX(-100%); /* Geser gambar ke kiri */
+    transform: translateX(-100%);
+    /* Geser gambar ke kiri */
 }
 
 /* Gambar yang berikutnya masuk dari kanan */
 .slide.next {
-    transform: translateX(100%); /* Geser gambar ke kanan */
+    transform: translateX(100%);
+    /* Geser gambar ke kanan */
 }
 
 /* Style untuk dot navigasi */
