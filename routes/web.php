@@ -25,7 +25,8 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('admin.logout')
 Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
 
 
-Route::post('/admin/gambar', [GaleriController::class, 'store'])->name('admin.gambar.store');
+Route::get('/admin/gambar', [GaleriController::class, 'index'])->name('admin.gambar');
+Route::post('/admin/gambar-store', [GaleriController::class, 'store'])->name('admin.gambar.store');
 
 
 
