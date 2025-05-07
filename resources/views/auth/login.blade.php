@@ -10,6 +10,8 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
+
     <div class="wrapper">
         <form action="{{ route('admin.loginproses') }}" method="POST">
             @csrf
