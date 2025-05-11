@@ -27,7 +27,7 @@
                                     <table class="table table-striped">
                                         <tr>
                                             <th>ID</th>
-                                            <th>Image</th>
+                                            <th>Gambar</th>
                                             <th>Judul</th>
                                             <th>Tanggal</th>
                                             <th>Action</th>
@@ -68,7 +68,7 @@
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="tambahModalLabel">Tambah Informasi</h5>
+                        <h5 class="modal-title" id="tambahModalLabel">Tambah Galeri</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -76,7 +76,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Gambar</label>
-                            <input type="file" name="image" class="form-control-file" required>
+                            <input type="file" name="foto" class="form-control-file" required>
                         </div>
                         <div class="form-group">
                             <label>Tanggal</label>

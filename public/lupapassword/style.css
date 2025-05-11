@@ -1,95 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;500;600;700&display=swap");
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
 
-  body {
-    background: #0f0f1b;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 0 10px;
+}
 
-  .login-box {
-    position: relative;
-    background: #10101a;
-    padding: 40px;
-    border-radius: 15px;
-    border: 2px solid transparent;
-    border-image: linear-gradient(45deg, #00f0ff, #ff00ff) 1;
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-    color: #00f0ff;
-    width: 300px;
-    text-align: center;
-  }
-
-  .login-box h2 {
-    margin-bottom: 30px;
-  }
-
-  .input-box {
-    position: relative;
-    margin-bottom: 25px;
-  }
-
-  .input-box input {
-    width: 100%;
-    padding: 10px;
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid #00f0ff;
-    color: #fff;
-    outline: none;
-  }
-
-  .input-box label {
+body::before {
+    content: "";
     position: absolute;
-    top: 10px;
-    left: 0;
-    color: #00f0ff;
-    pointer-events: none;
-    transition: 0.5s;
+    width: 100%;
+    height: 100%;
+    background: url("logologin.png") no-repeat center center;
+    background-size: cover;
+    z-index: -1;
   }
 
-  .input-box input:focus ~ label,
-  .input-box input:valid ~ label {
-    top: -15px;
-    font-size: 12px;
-    color: #ff00ff;
+  .wrapper {
+    width: 400px;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    border: none;
   }
 
-  button {
-    margin-top: 10px;
-    padding: 10px 25px;
-    background: transparent;
-    color: #00f0ff;
-    border: 2px solid #00f0ff;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
+form {
+  display: flex;
+  flex-direction: column;
+}
+h2 {
+    font-family:Copperplate, serif;
+  font-size: 1.7rem;
+  margin-bottom: 30px;
+  color: rgb(54, 50, 50);
+}
 
-  button:hover {
-    background: #00f0ff;
-    color: #000;
-  }
+.input-field {
+  position: relative;
+  border-bottom: 2px solid #ccc;
+  margin: 15px 0;
+}
 
-  .links {
-    display: flex;
-    justify-content: space-between;
+.input-field label {
+    margin-left: 5px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  color: rgb(54, 50, 50);
+  font-size: 16px;
+  pointer-events: none;
+  transition: 0.15s ease;
+}
+
+.input-field input {
+    padding: 5px;
+    border-radius: 10px;
+  width: 100%;
+  height: 40px;
+  background: white;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #000;
+}
+
+.input-field input:focus~label,
+.input-field input:valid~label {
+  font-size: 0.8rem;
+  top: 10px;
+  transform: translateY(-120%);
+}
+
+.forget {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 25px 0 35px 0;
+  color: #000;
+}
+
+#remember {
+  accent-color: #000;
+}
+
+.forget label {
+  display: flex;
+  align-items: center;
+}
+
+.forget label p {
+  margin-left: 8px;
+}
+
+.wrapper a {
+    color: black;
+  text-decoration: none;
+}
+
+.wrapper a:hover {
+  text-decoration: underline;
+}
+
+button {
     margin-top: 20px;
-  }
+  background: #fff;
+  color: #000;
+  font-weight: 600;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 16px;
+  border: 2px solid transparent;
+  transition: 0.3s ease;
+}
 
-  .links a {
-    color: #00f0ff;
-    text-decoration: none;
-    font-size: 14px;
-    transition: 0.3s;
-  }
-
-  .links a:hover {
-    color: #ff00ff;
-  }
+button:hover {
+  color: #fff;
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}

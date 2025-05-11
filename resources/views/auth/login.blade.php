@@ -23,11 +23,11 @@
             </div>
             <div class="input-field">
                 <input type="password" name="password" required>
-                <label>password</label>
+                <label>Password</label>
             </div>
             <div class="forget">
 
-                <a href="{{ route('auth.lupapassword') }}">Lupa password?</a>
+                <a href="{{ route('auth.lupapassword') }}">Ubah password?</a>
             </div>
             <button type="submit">Log In</button>
         </form>

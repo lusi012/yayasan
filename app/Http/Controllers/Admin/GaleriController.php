@@ -9,28 +9,27 @@ use Illuminate\Support\Facades\Storage;
 
 class GaleriController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('admin.galeri.index');
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'tanggal' => 'required|date',
             'judul' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
         ]);
 
         // Simpan file gambar
-        $path = $request->file('image')->store('galeri', 'public');
+        $path = $request->file('foto')->store('galeri', 'public');
 
         // Simpan data ke database
         Galeri::create([
-            'image' => $path,
+            'foto' => $path,
             'tanggal' => $request->tanggal,
             'judul' => $request->judul,
-            'status' => 'Proses', // default
         ]);
 
         return redirect()->route('galeri.index')->with('success', 'Data galeri berhasil ditambahkan.');

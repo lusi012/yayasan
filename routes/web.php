@@ -23,15 +23,18 @@ Route::post('/loginproses', [LoginController::class, 'login'])->name('admin.logi
 Route::post('/logout', [LoginController::class, 'logout'])->name('admin.logout');
 
 //lupa password
-Route::post('/lupapassword', [LupapasswordController::class,'lupapassword'])->name('auth.lupapassword');
+Route::get('/lupa-password', [LupapasswordController::class,'index'])->name('auth.lupapassword');
 Route::post('/lupapasswordproses', [LupapasswordController::class, 'lupapassword'])->name('admin.lupapasswordproses');
 
 
 // Protected routes
 Route::middleware(['admin'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
-    Route::get('/admin/gambar', [GaleriController::class, 'index'])->name('admin.gambar');
-    Route::post('/admin/gambar-store', [GaleriController::class, 'store'])->name('admin.gambar.store');
+    Route::get('/admin/galeri', [GaleriController::class, 'index'])->name('admin.galeri.index');
+    Route::post('/admin/galeri', [GaleriController::class, 'store'])->name('admin.galeri.store');
+
+    // Route::get('/admin/gambar', [GaleriController::class, 'index'])->name('admin.gambar');
+    // Route::post('/admin/gambar-store', [GaleriController::class, 'store'])->name('admin.gambar.store');
     Route::get('/admin/informasi', [InformasiController::class, 'index'])->name('admin.informasi');
 
 });
