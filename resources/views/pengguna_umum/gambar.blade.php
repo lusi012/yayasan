@@ -7,7 +7,7 @@
     <title>Gallery - Yayasan Cahaya Ayu Kota Pontianak</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('yayasan/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('yayasan/style.css') }}">
 </head>
 
 <body>
@@ -18,7 +18,7 @@
             @yield('content')
         </div>
     </header>
-    
+
     <main class="container mx-auto py-8">
         <h1 class="text-4xl font-bold mb-6 text-center">Gallery</h1>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -41,12 +41,12 @@
     <footer>
         <p>&copy; 2023 Yayasan Cahaya Ayu Kota Pontianak</p>
         <ul class="social-footer">
-          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-          <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-          <li><a href="#"><i class="fab fa-tiktok"></i></a></li>
-          <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="#"><i class="fab fa-tiktok"></i></a></li>
+            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
         </ul>
-      </footer>
+    </footer>
 </body>
 
 </html>
