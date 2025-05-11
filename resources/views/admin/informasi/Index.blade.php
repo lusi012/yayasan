@@ -26,7 +26,7 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <tr>
-                                            <th>ID</th>
+                                            <th>No</th>
                                             <th>Gambar</th>
                                             <th>Judul</th>
                                             <th>Deskripsi</th>

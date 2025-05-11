@@ -6,34 +6,42 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Galeri;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class GaleriController extends Controller
 {
     public function index()
     {
-        // return view('admin.galeri.index');
+
         $galeris = Galeri::all(); // atau pakai ->latest() jika mau urut terbaru
         return view('admin.galeri.index', compact('galeris'));
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'tanggal' => 'required|date',
-            'judul' => 'required|string|max:255',
-        ]);
+{
+    $request->validate([
+        'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:8048',
+        'tanggal' => 'required|date',
+        'judul' => 'required|string|max:255',
+    ]);
 
-        // Simpan file gambar
-        $path = $request->file('foto')->store('galeri', 'public');
 
-        // Simpan data ke database
-        Galeri::create([
-            'foto' => $path,
-            'judul' => $request->judul,
-            'tanggal' => $request->tanggal,
-        ]);
+    $extension = $request->file('foto')->getClientOriginalExtension();
 
-        return redirect()->route('admin.galeri.index')->with('success', 'Data galeri berhasil ditambahkan.');
-    }
+
+    $filename = Str::slug($request->judul) . '-' . \Carbon\Carbon::parse($request->tanggal)->format('Y-m-d') . '.' . $extension;
+
+
+    $path = $request->file('foto')->storeAs('galeri', $filename, 'public');
+
+
+    Galeri::create([
+        'id_galeri' => Str::uuid(),
+        'foto' => $path,
+        'judul' => $request->judul,
+        'tanggal' => $request->tanggal,
+    ]);
+
+    return redirect()->route('admin.galeri.index')->with('success', 'Data galeri berhasil ditambahkan.');
+}
 }

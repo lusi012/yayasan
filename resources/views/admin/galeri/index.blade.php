@@ -27,7 +27,7 @@
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
+                                                <th>No</th>
                                                 <th>Gambar</th>
                                                 <th>Judul</th>
                                                 <th>Tanggal</th>
@@ -39,10 +39,9 @@
                                             @foreach ($galeris as $index => $galeri)
                                                 <tr>
                                                     <td>{{ $index + 1 }}</td>
-                                                    {{-- <td>{{ $galeri->id_galeri }}</td> --}}
-
                                                     <td>
-                                                        <img src="{{ asset('storage/' . $galeri->foto) }}" alt="Gambar" width="100">
+                                                        <img src="{{ asset('storage/' . $galeri->foto) }}" alt="Gambar"
+                                                            width="80px">
                                                     </td>
 
                                                     <td>{{ $galeri->judul }}</td>
