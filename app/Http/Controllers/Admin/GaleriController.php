@@ -11,7 +11,9 @@ class GaleriController extends Controller
 {
     public function index()
     {
-        return view('admin.galeri.index');
+        // return view('admin.galeri.index');
+        $galeris = Galeri::all(); // atau pakai ->latest() jika mau urut terbaru
+        return view('admin.galeri.index', compact('galeris'));
     }
 
     public function store(Request $request)
