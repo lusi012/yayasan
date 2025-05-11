@@ -28,10 +28,10 @@ class GaleriController extends Controller
         // Simpan data ke database
         Galeri::create([
             'foto' => $path,
-            'tanggal' => $request->tanggal,
             'judul' => $request->judul,
+            'tanggal' => $request->tanggal,
         ]);
 
-        return redirect()->route('galeri.index')->with('success', 'Data galeri berhasil ditambahkan.');
+        return redirect()->route('admin.galeri.index')->with('success', 'Data galeri berhasil ditambahkan.');
     }
 }
