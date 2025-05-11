@@ -87,7 +87,7 @@
                                 <span>Dashboard</span></a>
                         </li>
                         <li>
-                            <a href="{{ route('admin.gambar') }}"><i class="ion ion-images"></i> <span>Galeri</span></a>
+                            <a href="{{ route('admin.galeri.index') }}"><i class="ion ion-images"></i> <span>Galeri</span></a>
                         </li>
                         <li>
                             <a href="{{ route('admin.informasi') }}"><i class="ion ion-information-circled"></i>
