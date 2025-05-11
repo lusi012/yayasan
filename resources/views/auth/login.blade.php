@@ -15,7 +15,8 @@
     <div class="wrapper">
         <form action="{{ route('admin.loginproses') }}" method="POST">
             @csrf
-            <h2>Login</h2>
+            <h1>YAYASAN CAHAYA AYU</h1>
+            <h2>LOGIN ADMIN</h2>
             <div class="input-field">
                 <input type="text" name="username">
                 <label>Username</label>
@@ -26,12 +27,9 @@
             </div>
             <div class="forget">
 
-                <a href="#">Forgot password?</a>
+                <a href="{{ route('auth.lupapassword') }}">Lupa password?</a>
             </div>
             <button type="submit">Log In</button>
-            <div class="register">
-                <p>Don't have an account? <a href="#">hubungi admin</a></p>
-            </div>
         </form>
     </div>
 </body>

@@ -35,7 +35,7 @@
             <div class="navbar-bg"></div>
             <nav class="navbar navbar-expand-lg main-navbar">
                 <form class="form-inline mr-auto">
-                    <ul class="navbar-nav mr-3">
+                    {{-- <ul class="navbar-nav mr-3">
                         <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i
                                     class="ion ion-navicon-round"></i></a></li>
                         <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i
@@ -44,23 +44,23 @@
                     <div class="search-element">
                         <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn" type="submit"><i class="ion ion-search"></i></button>
-                    </div>
+                    </div> --}}
                 </form>
                 <ul class="navbar-nav navbar-right">
 
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg">
                             <i class="ion ion-android-person d-lg-none"></i>
-                            <div class="d-sm-none d-lg-inline-block">Administrator</div>
+                            <div class="d-sm-none d-lg-inline-block">Admin </div>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right">
+                        {{-- <div class="dropdown-menu dropdown-menu-right">
                             <a href="profile.html" class="dropdown-item has-icon">
                                 <i class="ion ion-android-person"></i> Profile
                             </a>
                             <a href="#" class="dropdown-item has-icon">
                                 <i class="ion ion-log-out"></i> Logout
                             </a>
-                        </div>
+                        </div> --}}
                     </li>
                 </ul>
             </nav>
@@ -110,9 +110,8 @@
             {{-- end content --}}
             <footer class="main-footer">
                 <div class="footer-left">
-                    Copyright &copy; <span id="year"></span>
-                    <div class="bullet"></div> Design By
-                    <a href="#">Bikin sendiri</a>
+                    &copy; <span id="year"></span>
+                    <a href="#">Yayasan Cahaya Ayu Kota Pontianak</a>
                 </div>
                 <div class="footer-right"></div>
             </footer>

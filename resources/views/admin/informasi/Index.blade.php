@@ -26,21 +26,21 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <tr>
-                                            <th>No</th>
+                                            <th>ID</th>
+                                            <th>Gambar</th>
                                             <th>Judul</th>
-                                            <th>Tanggal</th>
-                                            <th>Image</th>
                                             <th>Deskripsi</th>
-                                            <th>Post</th>
+                                            <th>Tanggal</th>
+
                                             <th>Action</th>
 
                                         <tr>
                                             <td>1</td>
+                                            <td>Image</td>
                                             <td>abc</td>
-                                            <td>2025-04-10</td>
-                                            <td>Ini gmabar</td>
-                                            <td><span class="badge badge-success">Proses</span></td>
-                                            <td>selesai</td>
+                                            <td>abc abc</td>
+                                            <td>Tanggal</td>
+
                                             <td>
                                                 <button class="btn btn-primary btn-sm" title="Edit">
                                                     <i class="fas fa-edit"></i>

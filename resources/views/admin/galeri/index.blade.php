@@ -26,19 +26,18 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <tr>
-                                            <th>No</th>
+                                            <th>ID</th>
                                             <th>Image</th>
-                                            <th>Tanggal</th>
                                             <th>Judul</th>
-                                            <th>Post</th>
+                                            <th>Tanggal</th>
                                             <th>Action</th>
 
                                         <tr>
                                             <td>1</td>
-                                            <td>Ini gmabar</td>
-                                            <td>2025-04-10</td>
+                                            <td>Img</td>
                                             <td>abc</td>
-                                            <td><span class="badge badge-success">Proses</span></td>
+                                            <td>Tanggal</td>
+
                                             <td>
                                                 <button class="btn btn-primary btn-sm" title="Edit">
                                                     <i class="fas fa-edit"></i>
@@ -86,10 +85,6 @@
                         <div class="form-group">
                             <label>Judul</label>
                             <input type="text" name="judul" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Post</label>
-                            <textarea name="deskripsi" class="form-control" rows="4" required></textarea>
                         </div>
 
                     </div>

@@ -40,9 +40,12 @@ form {
   display: flex;
   flex-direction: column;
 }
-
+h1{
+    font-size: 1.8rem;
+    color: #fff;
+}
 h2 {
-  font-size: 2rem;
+  font-size: 1.7rem;
   margin-bottom: 20px;
   color: #fff;
 }
@@ -128,10 +131,4 @@ button:hover {
   color: #fff;
   border-color: #fff;
   background: rgba(255, 255, 255, 0.15);
-}
-
-.register {
-  text-align: center;
-  margin-top: 30px;
-  color: #fff;
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GaleriController;
 use App\Http\Controllers\Admin\InformasiController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LupapasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Userumum\HomeController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -20,6 +21,11 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/login', [LoginController::class, 'index'])->name('admin.login')->middleware('guest');
 Route::post('/loginproses', [LoginController::class, 'login'])->name('admin.loginproses');
 Route::post('/logout', [LoginController::class, 'logout'])->name('admin.logout');
+
+//lupa password
+Route::post('/lupapassword', [LupapasswordController::class,'lupapassword'])->name('auth.lupapassword');
+Route::post('/lupapasswordproses', [LupapasswordController::class, 'lupapassword'])->name('admin.lupapasswordproses');
+
 
 // Protected routes
 Route::middleware(['admin'])->group(function () {
