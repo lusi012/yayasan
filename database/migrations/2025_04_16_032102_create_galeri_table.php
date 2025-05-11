@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id('id_galeri');
             $table->string('foto');
             $table->string('judul');
-            $table->string('post');
             $table->datetime('tanggal');
             $table->timestamps();
         });

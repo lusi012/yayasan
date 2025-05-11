@@ -1,29 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- Coding By CodingNepal - www.codingnepalweb.com -->
+<html>
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Neon Login</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ asset('lupapassword/style.css') }}">
 </head>
+
 <body>
-  <div class="login-box">
-    <h2>LUPA PASSWORD</h2>
-    <form>
-      <div class="input-box">
-        <input type="text" required>
-        <label>Password Baru</label>
-      </div>
-      <div class="input-box">
-        <input type="password" required>
-        <label>Ulang Password Baru</label>
-      </div>
-      <button type="submit">Reset</button>
-      <div class="links">
-        <a href="#">Forgot Password ?</a>
-        <a href="#">SignUp</a>
-      </div>
-    </form>
-  </div>
+    @include('sweetalert::alert')
+
+    <div class="wrapper">
+        <form action="{{ route('admin.loginproses') }}" method="POST">
+            @csrf
+            <h2>RESET PASSWORD ADMIN</h2>
+            <div class="input-field">
+                <input type="text" name="username">
+                <label>Password</label>
+            </div>
+            <div class="input-field">
+                <input type="password" name="password" required>
+                <label>Konfirmasi Password</label>
+            </div>
+            <button type="submit">Reset</button>
+        </form>
+    </div>
 </body>
+
 </html>

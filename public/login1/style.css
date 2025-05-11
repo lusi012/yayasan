@@ -17,37 +17,42 @@ body {
 }
 
 body::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: url("logologin.png"), #000;
-  background-position: center;
-  background-size: cover;
-}
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url("logologin.png") no-repeat center center;
+    background-size: cover;
+    z-index: -1;
+  }
 
-.wrapper {
-  width: 400px;
-  border-radius: 8px;
-  padding: 30px;
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
+  .wrapper {
+    width: 400px;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    border: none;
+    /* Hapus ini */
+    /* backdrop-filter: blur(20px); */
+    /* -webkit-backdrop-filter: blur(20px); */
+  }
 
 form {
   display: flex;
   flex-direction: column;
 }
 h1{
-    font-size: 1.8rem;
-    color: #fff;
+    margin-bottom: 50px;
+    font-family:Copperplate, serif;
+    font-size: 2rem;
+    color: rgb(54, 50, 50);
 }
 h2 {
+
+    font-family:Copperplate, serif;
   font-size: 1.7rem;
   margin-bottom: 20px;
-  color: #fff;
+  color: rgb(54, 50, 50);
 }
 
 .input-field {
@@ -57,24 +62,27 @@ h2 {
 }
 
 .input-field label {
+    margin-left: 5px;
   position: absolute;
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  color: #fff;
+  color: rgb(54, 50, 50);
   font-size: 16px;
   pointer-events: none;
   transition: 0.15s ease;
 }
 
 .input-field input {
+    padding: 5px;
+    border-radius: 10px;
   width: 100%;
   height: 40px;
-  background: transparent;
+  background: white;
   border: none;
   outline: none;
   font-size: 16px;
-  color: #fff;
+  color: #000;
 }
 
 .input-field input:focus~label,
@@ -89,11 +97,11 @@ h2 {
   align-items: center;
   justify-content: space-between;
   margin: 25px 0 35px 0;
-  color: #fff;
+  color: #000;
 }
 
 #remember {
-  accent-color: #fff;
+  accent-color: #000;
 }
 
 .forget label {
@@ -106,7 +114,7 @@ h2 {
 }
 
 .wrapper a {
-  color: #efefef;
+    color: black;
   text-decoration: none;
 }
 
