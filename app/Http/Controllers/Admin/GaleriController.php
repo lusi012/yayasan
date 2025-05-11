@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Galeri;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class GaleriController extends Controller
 {
@@ -42,6 +44,7 @@ class GaleriController extends Controller
         'tanggal' => $request->tanggal,
     ]);
 
-    return redirect()->route('admin.galeri.index')->with('success', 'Data galeri berhasil ditambahkan.');
+    Alert::toast('Data Galeri berhasil ditambah', 'success');
+    return redirect()->route('admin.galeri.index');
 }
 }
