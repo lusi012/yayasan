@@ -25,29 +25,41 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped">
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Gambar</th>
-                                            <th>Judul</th>
-                                            <th>Tanggal</th>
-                                            <th>Action</th>
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Gambar</th>
+                                                <th>Judul</th>
+                                                <th>Tanggal</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
 
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Img</td>
-                                            <td>abc</td>
-                                            <td>Tanggal</td>
+                                        <tbody>
+                                            @foreach ($galeris as $index => $galeri)
+                                                <tr>
+                                                    <td>{{ $index + 1 }}</td>
+                                                    {{-- <td>{{ $galeri->id_galeri }}</td> --}}
 
-                                            <td>
-                                                <button class="btn btn-primary btn-sm" title="Edit">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-danger btn-sm" title="Delete">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                                    <td>
+                                                        <img src="{{ asset('storage/' . $galeri->foto) }}" alt="Gambar" width="100">
+                                                    </td>
 
+                                                    <td>{{ $galeri->judul }}</td>
+
+                                                    <td>{{ \Carbon\Carbon::parse($galeri->tanggal)->format('d-m-Y') }}</td>
+
+                                                    <td>
+                                                        <button class="btn btn-primary btn-sm" title="Edit">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger btn-sm" title="Delete">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>

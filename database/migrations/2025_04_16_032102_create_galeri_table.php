@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('galeri', function (Blueprint $table) {
-            $table->id('id_galeri');
-            $table->string('gambar');
+            $table->uuid('id_galeri');
             $table->string('foto');
             $table->string('judul');
             $table->datetime('tanggal');
