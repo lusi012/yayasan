@@ -32,6 +32,8 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/galeri', [GaleriController::class, 'index'])->name('admin.galeri.index');
     Route::post('/admin/galeri', [GaleriController::class, 'store'])->name('admin.galeri.store');
+    Route::delete('/admin/galeri/{id}', [App\Http\Controllers\Admin\GaleriController::class, 'destroy'])->name('admin.galeri.destroy');
+
 
     // Route::get('/admin/gambar', [GaleriController::class, 'index'])->name('admin.gambar');
     // Route::post('/admin/gambar-store', [GaleriController::class, 'store'])->name('admin.gambar.store');

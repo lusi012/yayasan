@@ -13,7 +13,7 @@ return new class extends Migration
         {
             Schema::create('informasi', function (Blueprint $table) {
                 $table->uuid('id_informasi');
-                $table->string('gambar');
+                $table->string('foto');
                 $table->string('judul');
                 $table->text('deskripsi');
                 $table->date('tanggal');
