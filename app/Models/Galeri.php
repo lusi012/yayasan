@@ -11,13 +11,18 @@ class Galeri extends Model
 
     protected $table = 'galeri';
 
+    // Menetapkan id_galeri sebagai primary key
+    protected $primaryKey = 'id_galeri';
+
+        public $incrementing = false;
+
+    // Pastikan key type menggunakan string untuk UUID
+    protected $keyType = 'string';
+
     protected $fillable = [
         'id_galeri',
         'foto',
         'judul',
         'tanggal',
     ];
-
-    public $incrementing = false;  // Karena menggunakan UUID
-    protected $keyType = 'string';
 }

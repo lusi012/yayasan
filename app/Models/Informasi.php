@@ -9,17 +9,21 @@ class Informasi extends Model
 {
     use HasFactory;
 
-    protected $table = 'informasi';
 
+     protected $table = 'informasi';
+
+    // Menetapkan id_galeri sebagai primary key
     protected $primaryKey = 'id_informasi';
 
-    public $incrementing = true;
+        public $incrementing = false;
 
-    protected $keyType = 'int';
+    // Pastikan key type menggunakan string untuk UUID
+    protected $keyType = 'string';
 
     protected $fillable = [
+        'id_informasi',
+        'foto',
         'judul',
         'tanggal',
-        'deskripsi',
     ];
 }

@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Informasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Str;
+
 
 class InformasiController extends Controller
 {
@@ -19,7 +23,7 @@ class InformasiController extends Controller
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:8048',
             'tanggal' => 'required|date',
             'judul' => 'required|string|max:255',
-            'deskripsi' => 'required|string|max:500',
+            'deskripsi' => 'required|string',
         ]);
 
 
@@ -33,28 +37,33 @@ class InformasiController extends Controller
 
 
         Informasi::create([
-            'id_galeri' => Str::uuid(),
+            'id_informasi' => Str::uuid(),
             'foto' => $path,
             'judul' => $request->judul,
             'tanggal' => $request->tanggal,
+            'deskripsi' => $request->deskripsi,
         ]);
 
         Alert::toast('Data Informasi berhasil ditambah', 'success');
         return redirect()->route('admin.informasi.index');
     }
     //Hapus galeri
-    public function destroy($id)
-    {
-        $galeri = Informasi::findOrFail($id);
+public function destroy($id_informasi)
+{
 
-        // Hapus file gambar dari disk 'public'
-        if ($informasi->foto && Storage::disk('public')->exists($informasi->foto)) {
-            Storage::disk('public')->delete($informasi->foto);
-        }
+    $informasi = Informasi::where('id_informasi', $id_informasi)->firstOrFail();
 
-        // Hapus data dari database
-        $galeri->delete();
 
-        return redirect()->route('admin.informasi.index')->with('success', 'Data informasi berhasil dihapus.');
+    if ($informasi->foto && Storage::disk('public')->exists($informasi->foto)) {
+        Storage::disk('public')->delete($informasi->foto);
     }
+
+    // Hapus data informasi dari database
+    $informasi->delete();
+
+    Alert::toast('Data informasi berhasil dihapus', 'success')->autoClose(3000);
+
+
+    return redirect()->route('admin.informasi.index');
+}
 }

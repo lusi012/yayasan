@@ -47,19 +47,24 @@ class GaleriController extends Controller
         Alert::toast('Data Galeri berhasil ditambah', 'success');
         return redirect()->route('admin.galeri.index');
     }
-    //Hapus data galeri
-    public function destroy($id)
-    {
-        $galeri = Galeri::findOrFail($id);
 
-        // Hapus file gambar dari disk 'public'
-        if ($galeri->foto && Storage::disk('public')->exists($galeri->foto)) {
-            Storage::disk('public')->delete($galeri->foto);
-        }
 
-        // Hapus data dari database
-        $galeri->delete();
+public function destroy($id_galeri)
+{
 
-        return redirect()->route('admin.galeri.index')->with('success', 'Data galeri berhasil dihapus.');
+    $galeri = Galeri::where('id_galeri', $id_galeri)->firstOrFail();
+
+
+    if ($galeri->foto && Storage::disk('public')->exists($galeri->foto)) {
+        Storage::disk('public')->delete($galeri->foto);
     }
+
+    // Hapus data galeri dari database
+    $galeri->delete();
+
+    Alert::toast('Data galeri berhasil dihapus', 'success')->autoClose(3000);
+
+
+    return redirect()->route('admin.galeri.index');
+}
 }

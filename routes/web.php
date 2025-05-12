@@ -32,11 +32,11 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/galeri', [GaleriController::class, 'index'])->name('admin.galeri.index');
     Route::post('/admin/galeri', [GaleriController::class, 'store'])->name('admin.galeri.store');
-    Route::delete('/admin/galeri/{id}', [App\Http\Controllers\Admin\GaleriController::class, 'destroy'])->name('admin.galeri.destroy');
+    Route::delete('/admin/galeri/{id_galeri}', [GaleriController::class, 'destroy'])->name('admin.galeri.destroy');
 
 
-    // Route::get('/admin/gambar', [GaleriController::class, 'index'])->name('admin.gambar');
-    // Route::post('/admin/gambar-store', [GaleriController::class, 'store'])->name('admin.gambar.store');
-    Route::get('/admin/informasi', [InformasiController::class, 'index'])->name('admin.informasi');
+    Route::get('/admin/informasi', [InformasiController::class, 'index'])->name('admin.informasi.index');
+    Route::post('/admin/informasi-add', [InformasiController::class, 'store'])->name('admin.informasi.store');
+    Route::delete('/admin/informasi/{id_informasi}', [InformasiController::class, 'destroy'])->name('admin.informasi.destroy');
 
 });

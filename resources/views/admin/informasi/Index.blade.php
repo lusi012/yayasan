@@ -34,53 +34,44 @@
 
                                             <th>Action</th>
 
-                                        <tbody>
-                                            @foreach ($informasis as $index => $informasi)
-                                                <tr>
-                                                    <td>{{ $index + 1 }}</td>
-                                                    <td>
-                                                        <img src="{{ asset('storage/' . $informasi->foto) }}" alt="Gambar"
-                                                            width="80px">
-                                                    </td>
-                                                    <td>{{ $informasi->judul }}</td>
-                                                    <td>{{ \Carbon\Carbon::parse($informasi->tanggal)->format('d-m-Y') }}</td>
-                                                    <td>
-                                                        <button class="btn btn-primary btn-sm" title="Edit">
-                                                            <i class="fas fa-edit"></i>
-                                                        </button>
+                                            <tbody>
+                                                @foreach ($informasis as $index => $informasi)
+                                                    <tr>
+                                                        <td>{{ $index + 1 }}</td>
+                                                        <td>
+                                                            <img src="{{ asset('storage/' . $informasi->foto) }}"
+                                                                alt="Gambar" width="80px">
+                                                        </td>
+                                                        <td>{{ $informasi->judul }}</td>
+                                                        <td>{{ $informasi->deskripsi }}</td>
+                                                        <td>{{ \Carbon\Carbon::parse($informasi->tanggal)->format('d-m-Y') }}
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-primary btn-sm" title="Edit">
+                                                                <i class="fas fa-edit"></i>
+                                                            </button>
 
-                                                        <form
-                                                            action="{{ route('admin.galeri.destroy', $informasi->id_informasi) }}"
-                                                            method="POST" style="display:inline-block;"
-                                                            onsubmit="return confirm('Yakin ingin menghapus data ini?')">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                                title="Delete">
+                                                            {{-- Tombol hapus --}}
+
+                                                            <!-- Tombol trigger SweetAlert -->
+                                                            <button type="button"
+                                                                class="btn btn-danger btn-sm swal-confirm"
+                                                                data-id="{{ $informasi->id_informasi }}">
                                                                 <i class="fas fa-trash"></i>
                                                             </button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
 
-                                        {{-- <tr>
-                                            <td>1</td>
-                                            <td>Image</td>
-                                            <td>abc</td>
-                                            <td>abc abc</td>
-                                            <td>Tanggal</td>
+                                                            <!-- Form tersembunyi -->
+                                                            <form id="delete-form-{{ $informasi->id_informasi }}"
+                                                                action="{{ route('admin.informasi.destroy', $informasi->id_informasi) }}"
+                                                                method="POST" style="display: none;">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
 
-                                            <td>
-                                                <button class="btn btn-primary btn-sm" title="Edit">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-danger btn-sm" title="Delete">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </td>
-                                        </tr> --}}
 
                                     </table>
                                 </div>
@@ -99,7 +90,7 @@
     <div class="modal" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="tambahModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
-            <form action="#" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.informasi.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
@@ -111,14 +102,14 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Gambar</label>
-                            <input type="file" name="image" class="form-control-file" required>
+                            <input type="file" name="foto" class="form-control-file" required>
                         </div>
 
                         <div class="form-group">
                             <label>Judul</label>
                             <input type="text" name="judul" class="form-control" required>
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
                             <label>Deskripsi</label>
                             <textarea name="deskripsi" class="form-control" rows="4" required></textarea>
                         </div>
@@ -126,13 +117,7 @@
                             <label>Tanggal</label>
                             <input type="date" name="tanggal" class="form-control" required>
                         </div>
-                        {{-- <div class="form-group">
-                            <label>Status Post</label>
-                            <select name="post" class="form-control">
-                                <option value="Proses">Proses</option>
-                                <option value="Selesai">Selesai</option>
-                            </select>
-                        </div> --}}
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" id="btnBatal">Batal</button>
@@ -143,3 +128,50 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const deleteButtons = document.querySelectorAll('.swal-confirm');
+
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+
+                    Swal.fire({
+                        title: 'Yakin ingin menghapus?',
+                        text: "Data yang dihapus tidak dapat dikembalikan!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#e3342f',
+                        cancelButtonColor: '#6c757d',
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal',
+                        width: '350px',
+                        heightAuto: false,
+                        didOpen: () => {
+
+                            const swalTitle = document.querySelector('.swal2-title');
+                            if (swalTitle) {
+                                swalTitle.style.fontSize =
+                                    '26px';
+                            }
+
+
+                            const swalText = document.querySelector('.swal2-text');
+                            if (swalText) {
+                                swalText.style.fontSize =
+                                    '12px';
+                            }
+                        }
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.getElementById('delete-form-' + id).submit();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+@endpush
