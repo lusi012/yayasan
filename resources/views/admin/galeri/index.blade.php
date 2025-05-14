@@ -47,16 +47,14 @@
                                                     <td>{{ \Carbon\Carbon::parse($galeri->tanggal)->format('d-m-Y') }}</td>
                                                     <td>
                                                         {{-- Tombol edit --}}
-
                                                         <button class="btn btn-primary btn-sm edit-button"
                                                             data-id="{{ $galeri->id_galeri }}"
                                                             data-judul="{{ $galeri->judul }}"
-                                                            data-tanggal="{{ $galeri->tanggal }}" data-toggle="modal"
+                                                            data-tanggal="{{ $galeri->tanggal }}"
+                                                            data-foto="{{ $galeri->foto }}" data-toggle="modal"
                                                             data-target="#editModal" title="Edit">
                                                             <i class="fas fa-edit"></i>
                                                         </button>
-
-
                                                         {{-- Tombol hapus --}}
 
                                                         <!-- Tombol trigger SweetAlert -->
@@ -104,7 +102,12 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Gambar</label>
-                            <input type="file" name="foto" class="form-control-file" required>
+                            <input type="file" name="foto" class="form-control-file" id="fotoInput" required>
+                            <!-- Tempat pratinjau foto -->
+                            <div class="mt-2">
+                                <img id="previewFoto" src="" alt="Pratinjau Foto"
+                                    style="max-height: 300px; display: none;">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label>Judul</label>
@@ -114,7 +117,6 @@
                             <label>Tanggal</label>
                             <input type="date" name="tanggal" class="form-control" required>
                         </div>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -124,7 +126,26 @@
             </form>
         </div>
     </div>
+    <script>
+        document.getElementById('fotoInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('previewFoto');
 
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = '';
+                preview.style.display = 'none';
+            }
+        });
+    </script>
     <!-- Modal Edit -->
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
         aria-hidden="true">
@@ -141,17 +162,25 @@
                     </div>
                     <div class="modal-body">
                         <input type="hidden" id="editId" name="id">
+
                         <div class="form-group">
                             <label>Judul</label>
                             <input type="text" id="editJudul" name="judul" class="form-control" required>
                         </div>
+
                         <div class="form-group">
                             <label>Tanggal</label>
-                            <input type="date" id="editTanggal" name="tanggal" class="form-control" required>
+                            <input type="date" id="editTanggal" name="tanggal" class="form-control">
                         </div>
+
                         <div class="form-group">
-                            <label>Gambar (Kosongkan jika tidak diubah)</label>
-                            <input type="file" name="foto" class="form-control-file">
+                            <label>Gambar (Kosongkan jika tidak diubah)</label><br>
+                            <img id="currentFoto" src="" alt="Foto Galeri" class="img-thumbnail"
+                                style="max-height: 200px;">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="file" name="foto" class="form-control-file" id="fotoInput">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -162,17 +191,53 @@
             </form>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js "></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js "></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.edit-button').on('click', function() {
+                var id = $(this).data('id');
+                var judul = $(this).data('judul');
+                var tanggal = $(this).data('tanggal');
+                var foto = $(this).data('foto');
+                $('#editId').val(id);
+                $('#editJudul').val(judul);
+                $('#editTanggal').val(tanggal);
+                if (foto) {
+                    var fotoPath = "{{ asset('storage/') }}/" + foto;
+                    $('#currentFoto').attr('src', fotoPath);
+                } else {
+                    $('#currentFoto').attr('src', '');
+                }
+                $('#editForm').attr('action', "{{ url('admin/galeri') }}/" + id);
+            });
+            $('#fotoInput').change(function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#currentFoto').attr('src', e.target
+                            .result);
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    $('#currentFoto').attr('src', '');
+                }
+            });
+        });
+    </script>
 
 @endsection
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             // ========= SweetAlert Hapus =========
             const deleteButtons = document.querySelectorAll('.swal-confirm');
 
             deleteButtons.forEach(button => {
-                button.addEventListener('click', function () {
+                button.addEventListener('click', function() {
                     const id = this.getAttribute('data-id');
 
                     Swal.fire({
@@ -206,7 +271,7 @@
             const editForm = document.getElementById('editForm');
 
             editButtons.forEach(button => {
-                button.addEventListener('click', function () {
+                button.addEventListener('click', function() {
                     const id = this.dataset.id;
                     const judul = this.dataset.judul;
                     const tanggal = this.dataset.tanggal;

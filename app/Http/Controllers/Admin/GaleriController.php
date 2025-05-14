@@ -81,7 +81,7 @@ class GaleriController extends Controller
         // Jika kamu ingin memperbolehkan update gambar:
         if ($request->hasFile('foto')) {
             // Hapus gambar lama
-            Storage::delete('public/' . $galeri->foto);
+            Storage::delete('public/storage/' . $galeri->foto);
 
             // Simpan gambar baru
             $galeri->foto = $request->file('foto')->store('galeri', 'public');
