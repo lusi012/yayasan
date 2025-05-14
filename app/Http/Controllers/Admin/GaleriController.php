@@ -49,22 +49,46 @@ class GaleriController extends Controller
     }
 
 
-public function destroy($id_galeri)
-{
+    public function destroy($id_galeri)
+    {
 
-    $galeri = Galeri::where('id_galeri', $id_galeri)->firstOrFail();
+        $galeri = Galeri::where('id_galeri', $id_galeri)->firstOrFail();
 
 
-    if ($galeri->foto && Storage::disk('public')->exists($galeri->foto)) {
-        Storage::disk('public')->delete($galeri->foto);
+        if ($galeri->foto && Storage::disk('public')->exists($galeri->foto)) {
+            Storage::disk('public')->delete($galeri->foto);
+        }
+
+        // Hapus data galeri dari database
+        $galeri->delete();
+
+        Alert::toast('Data galeri berhasil dihapus', 'success')->autoClose(3000);
+
+
+        return redirect()->route('admin.galeri.index');
     }
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'judul' => 'required|string|max:255',
+            'tanggal' => 'required|date',
+        ]);
 
-    // Hapus data galeri dari database
-    $galeri->delete();
+        $galeri = Galeri::findOrFail($id);
+        $galeri->judul = $request->judul;
+        $galeri->tanggal = $request->tanggal;
 
-    Alert::toast('Data galeri berhasil dihapus', 'success')->autoClose(3000);
+        // Jika kamu ingin memperbolehkan update gambar:
+        if ($request->hasFile('foto')) {
+            // Hapus gambar lama
+            Storage::delete('public/' . $galeri->foto);
 
+            // Simpan gambar baru
+            $galeri->foto = $request->file('foto')->store('galeri', 'public');
+        }
 
-    return redirect()->route('admin.galeri.index');
-}
+        $galeri->save();
+
+        return redirect()->route('admin.galeri.index')->with('success', 'Galeri berhasil diupdate.');
+    }
 }

@@ -46,9 +46,16 @@
                                                     <td>{{ $galeri->judul }}</td>
                                                     <td>{{ \Carbon\Carbon::parse($galeri->tanggal)->format('d-m-Y') }}</td>
                                                     <td>
-                                                        <button class="btn btn-primary btn-sm" title="Edit">
+                                                        {{-- Tombol edit --}}
+
+                                                        <button class="btn btn-primary btn-sm edit-button"
+                                                            data-id="{{ $galeri->id_galeri }}"
+                                                            data-judul="{{ $galeri->judul }}"
+                                                            data-tanggal="{{ $galeri->tanggal }}" data-toggle="modal"
+                                                            data-target="#editModal" title="Edit">
                                                             <i class="fas fa-edit"></i>
                                                         </button>
+
 
                                                         {{-- Tombol hapus --}}
 
@@ -117,15 +124,55 @@
             </form>
         </div>
     </div>
+
+    <!-- Modal Edit -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <form id="editForm" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel">Edit Galeri</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="editId" name="id">
+                        <div class="form-group">
+                            <label>Judul</label>
+                            <input type="text" id="editJudul" name="judul" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" id="editTanggal" name="tanggal" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Gambar (Kosongkan jika tidak diubah)</label>
+                            <input type="file" name="foto" class="form-control-file">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
 @endsection
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
+            // ========= SweetAlert Hapus =========
             const deleteButtons = document.querySelectorAll('.swal-confirm');
 
             deleteButtons.forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const id = this.getAttribute('data-id');
 
                     Swal.fire({
@@ -137,28 +184,37 @@
                         cancelButtonColor: '#6c757d',
                         confirmButtonText: 'Ya, hapus!',
                         cancelButtonText: 'Batal',
-                        width: '350px', // Mengurangi lebar modal menjadi lebih kecil
-                        heightAuto: false, // Agar tinggi modal tidak otomatis menyesuaikan
+                        width: '350px',
+                        heightAuto: false,
                         didOpen: () => {
-                            // Memperkecil ukuran teks judul
                             const swalTitle = document.querySelector('.swal2-title');
-                            if (swalTitle) {
-                                swalTitle.style.fontSize =
-                                    '26px'; // Ukuran font judul yang lebih kecil
-                            }
+                            if (swalTitle) swalTitle.style.fontSize = '26px';
 
-                            // Memperkecil ukuran teks pesan
                             const swalText = document.querySelector('.swal2-text');
-                            if (swalText) {
-                                swalText.style.fontSize =
-                                    '12px'; // Ukuran font pesan yang lebih kecil
-                            }
+                            if (swalText) swalText.style.fontSize = '12px';
                         }
                     }).then((result) => {
                         if (result.isConfirmed) {
                             document.getElementById('delete-form-' + id).submit();
                         }
                     });
+                });
+            });
+
+            // ========= Modal Edit =========
+            const editButtons = document.querySelectorAll('.edit-button');
+            const editForm = document.getElementById('editForm');
+
+            editButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const id = this.dataset.id;
+                    const judul = this.dataset.judul;
+                    const tanggal = this.dataset.tanggal;
+
+                    editForm.action = `/admin/galeri/${id}`;
+                    document.getElementById('editJudul').value = judul;
+                    document.getElementById('editTanggal').value = tanggal;
+                    $('#editModal').modal('show');
                 });
             });
         });
