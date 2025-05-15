@@ -14,12 +14,14 @@
                                 <a href="#" class="btn btn-success" data-toggle="modal" data-target="#tambahModal">
                                     <i class="fas fa-plus"></i> Tambah
                                 </a>
-                                <form class="d-flex">
-                                    <input type="text" class="form-control" placeholder="Search">
+                                <form class="d-flex" method="GET" action="{{ route('admin.galeri.index') }}">
+                                    <input type="text" name="search" class="form-control" placeholder="Search"
+                                        value="{{ request('search') }}">
                                     <button class="btn btn-secondary" type="submit">
                                         <i class="ion ion-search"></i>
                                     </button>
                                 </form>
+
                             </div>
 
                             <div class="card-body">
@@ -50,11 +52,11 @@
                                                         <button class="btn btn-primary btn-sm edit-button"
                                                             data-id="{{ $galeri->id_galeri }}"
                                                             data-judul="{{ $galeri->judul }}"
-                                                            data-tanggal="{{ $galeri->tanggal }}"
-                                                            data-foto="{{ $galeri->foto }}" data-toggle="modal"
-                                                            data-target="#editModal" title="Edit">
+                                                            data-tanggal="{{ \Carbon\Carbon::parse($galeri->tanggal)->format('Y-m-d') }}"
+                                                            data-foto="{{ $galeri->foto }}" title="Edit">
                                                             <i class="fas fa-edit"></i>
                                                         </button>
+
                                                         {{-- Tombol hapus --}}
 
                                                         <!-- Tombol trigger SweetAlert -->
@@ -75,6 +77,10 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+                                    <!-- Tambahkan ini di bawah tabel -->
+                                    <div class="d-flex justify-content-center">
+                                        {{ $galeris->appends(request()->input())->links() }}
+                                    </div>
                                 </div>
                             </div>
 
@@ -119,6 +125,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        {{-- tambah galeri (Batal) --}}
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
@@ -184,6 +191,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        {{-- edit galeri (batal) --}}
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                     </div>

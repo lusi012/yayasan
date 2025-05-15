@@ -12,10 +12,24 @@ use Illuminate\Support\Str;
 
 class InformasiController extends Controller
 {
-    public function index(){
+    public function index(Request $request)
+    {
         // return view('admin.informasi.index');
-         $informasis = Informasi::all(); // atau pakai ->latest() jika mau urut terbaru
-        return view('admin.informasi.index', compact('informasis'));
+        //$informasis = Informasi::all(); // atau pakai ->latest() jika mau urut terbaru
+        //return view('admin.informasi.index', compact('informasis'));
+
+        $search = $request->input('search');
+        $query = Informasi::query();
+
+        if ($search) {
+            $query->where('judul', 'like', "%{$search}%")
+                ->orWhere('deskripsi', 'like', "%{$search}%");
+        }
+
+        $informasis = $query->latest()->paginate(10);
+
+
+        return view('admin.informasi.index', compact('informasis', 'search'));
     }
     public function store(Request $request)
     {
@@ -48,22 +62,22 @@ class InformasiController extends Controller
         return redirect()->route('admin.informasi.index');
     }
     //Hapus galeri
-public function destroy($id_informasi)
-{
+    public function destroy($id_informasi)
+    {
 
-    $informasi = Informasi::where('id_informasi', $id_informasi)->firstOrFail();
+        $informasi = Informasi::where('id_informasi', $id_informasi)->firstOrFail();
 
 
-    if ($informasi->foto && Storage::disk('public')->exists($informasi->foto)) {
-        Storage::disk('public')->delete($informasi->foto);
+        if ($informasi->foto && Storage::disk('public')->exists($informasi->foto)) {
+            Storage::disk('public')->delete($informasi->foto);
+        }
+
+        // Hapus data informasi dari database
+        $informasi->delete();
+
+        Alert::toast('Data informasi berhasil dihapus', 'success')->autoClose(3000);
+
+
+        return redirect()->route('admin.informasi.index');
     }
-
-    // Hapus data informasi dari database
-    $informasi->delete();
-
-    Alert::toast('Data informasi berhasil dihapus', 'success')->autoClose(3000);
-
-
-    return redirect()->route('admin.informasi.index');
-}
 }

@@ -12,11 +12,21 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class GaleriController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
 
-        $galeris = Galeri::all(); // atau pakai ->latest() jika mau urut terbaru
-        return view('admin.galeri.index', compact('galeris'));
+        // $galeris = Galeri::all(); // atau pakai ->latest() jika mau urut terbaru
+        // return view('admin.galeri.index', compact('galeris'));
+
+        $search = $request->input('search');
+        $query = Galeri::query();
+
+        if ($search) {
+            $query->where('judul', 'like', "%{$search}%");
+        }
+
+        $galeris = $query->latest()->paginate(10);
+        return view('admin.galeri.index', compact('galeris', 'search'));
     }
 
     public function store(Request $request)
@@ -54,10 +64,14 @@ class GaleriController extends Controller
 
         $galeri = Galeri::where('id_galeri', $id_galeri)->firstOrFail();
 
-
         if ($galeri->foto && Storage::disk('public')->exists($galeri->foto)) {
             Storage::disk('public')->delete($galeri->foto);
         }
+
+
+        // if ($galeri->foto && Storage::disk('public')->exists($galeri->foto)) {
+        //     Storage::disk('public')->delete($galeri->foto);
+        // }
 
         // Hapus data galeri dari database
         $galeri->delete();

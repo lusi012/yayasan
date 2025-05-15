@@ -33,11 +33,14 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin/galeri', [GaleriController::class, 'index'])->name('admin.galeri.index');
     Route::post('/admin/galeri', [GaleriController::class, 'store'])->name('admin.galeri.store');
     Route::delete('/admin/galeri/{id_galeri}', [GaleriController::class, 'destroy'])->name('admin.galeri.destroy');
+    Route::put('/admin/galeri/{id_galeri}', [GaleriController::class, 'update'])->name('admin.galeri.update');
     Route::put('/admin/galeri/{id}', [GaleriController::class, 'update'])->name('admin.galeri.update');
 
 
     Route::get('/admin/informasi', [InformasiController::class, 'index'])->name('admin.informasi.index');
     Route::post('/admin/informasi-add', [InformasiController::class, 'store'])->name('admin.informasi.store');
     Route::delete('/admin/informasi/{id_informasi}', [InformasiController::class, 'destroy'])->name('admin.informasi.destroy');
+    Route::put('/admin/informasi/{id_informasi}', [InformasiController::class, 'update'])->name('admin.informasi.update');
+
 
 });

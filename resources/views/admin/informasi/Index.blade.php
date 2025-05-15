@@ -14,66 +14,86 @@
                                 <a href="#" class="btn btn-success" data-toggle="modal" data-target="#tambahModal">
                                     <i class="fas fa-plus"></i> Tambah
                                 </a>
-                                <form class="d-flex">
-                                    <input type="text" class="form-control" placeholder="Search">
+                                {{-- Pencarian --}}
+                                <form class="d-flex" method="GET" action="{{ route('admin.informasi.index') }}">
+                                    <input type="text" name="search" class="form-control" placeholder="Search"
+                                        value="{{ request('search') }}">
                                     <button class="btn btn-secondary" type="submit">
                                         <i class="ion ion-search"></i>
                                     </button>
                                 </form>
+
+
                             </div>
 
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped">
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Gambar</th>
-                                            <th>Judul</th>
-                                            <th>Deskripsi</th>
-                                            <th>Tanggal</th>
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Gambar</th>
+                                                <th>Judul</th>
+                                                <th>Deskripsi</th>
+                                                <th>Tanggal</th>
 
-                                            <th>Action</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
 
-                                            <tbody>
-                                                @foreach ($informasis as $index => $informasi)
-                                                    <tr>
-                                                        <td>{{ $index + 1 }}</td>
-                                                        <td>
-                                                            <img src="{{ asset('storage/' . $informasi->foto) }}"
-                                                                alt="Gambar" width="80px">
-                                                        </td>
-                                                        <td>{{ $informasi->judul }}</td>
-                                                        <td>{{ $informasi->deskripsi }}</td>
-                                                        <td>{{ \Carbon\Carbon::parse($informasi->tanggal)->format('d-m-Y') }}
-                                                        </td>
-                                                        <td>
-                                                            <button class="btn btn-primary btn-sm" title="Edit">
-                                                                <i class="fas fa-edit"></i>
-                                                            </button>
+                                        <tbody>
+                                            @foreach ($informasis as $index => $informasi)
+                                                <tr>
+                                                    <td>{{ $index + 1 }}</td>
+                                                    <td>
+                                                        <img src="{{ asset('storage/' . $informasi->foto) }}" alt="Gambar"
+                                                            width="80px">
+                                                    </td>
+                                                    <td>{{ $informasi->judul }}</td>
+                                                    <td>{{ $informasi->deskripsi }}</td>
+                                                    <td>{{ \Carbon\Carbon::parse($informasi->tanggal)->format('d-m-Y') }}
+                                                    </td>
+                                                    <td>
+                                                        {{-- Edit --}}
+                                                        <button class="btn btn-primary btn-sm btn-edit"
+                                                            data-id="{{ $informasi->id_informasi }}"
+                                                            data-judul="{{ $informasi->judul }}"
+                                                            data-deskripsi="{{ $informasi->deskripsi }}"
+                                                            data-tanggal="{{ $informasi->tanggal }}"
+                                                            data-foto="{{ asset('storage/' . $informasi->foto) }}"
+                                                            data-action="{{ route('admin.informasi.update', $informasi->id_informasi) }}"
+                                                            data-toggle="modal" data-target="#editModal" title="Edit">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
 
-                                                            {{-- Tombol hapus --}}
 
-                                                            <!-- Tombol trigger SweetAlert -->
-                                                            <button type="button"
-                                                                class="btn btn-danger btn-sm swal-confirm"
-                                                                data-id="{{ $informasi->id_informasi }}">
-                                                                <i class="fas fa-trash"></i>
-                                                            </button>
+                                                        {{-- Tombol hapus --}}
 
-                                                            <!-- Form tersembunyi -->
-                                                            <form id="delete-form-{{ $informasi->id_informasi }}"
-                                                                action="{{ route('admin.informasi.destroy', $informasi->id_informasi) }}"
-                                                                method="POST" style="display: none;">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                            </form>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
+                                                        <!-- Tombol trigger SweetAlert -->
+                                                        <button type="button" class="btn btn-danger btn-sm swal-confirm"
+                                                            data-id="{{ $informasi->id_informasi }}">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+
+                                                        <!-- Form tersembunyi -->
+                                                        <form id="delete-form-{{ $informasi->id_informasi }}"
+                                                            action="{{ route('admin.informasi.destroy', $informasi->id_informasi) }}"
+                                                            method="POST" style="display: none;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
 
 
                                     </table>
+                                    <!-- Tambahkan ini di bawah tabel -->
+                                    <div class="d-flex justify-content-center">
+                                        {{ $informasis->appends(request()->input())->links() }}
+                                    </div>
+
                                 </div>
                             </div>
 
@@ -127,7 +147,87 @@
             </form>
         </div>
     </div>
+
+    {{-- Edit informasi --}}
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <form id="editForm" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel">Edit Informasi</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="editId" name="id">
+
+                        <div class="form-group">
+                            <label>Judul</label>
+                            <input type="text" id="editJudul" name="judul" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Deskripsi</label>
+                            <textarea id="editDeskripsi" name="deskripsi" class="form-control" rows="4" required></textarea>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" id="editTanggal" name="tanggal" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Gambar (Kosongkan jika tidak diubah)</label><br>
+                            <img id="currentFoto" src="" alt="Foto Galeri" class="img-thumbnail"
+                                style="max-height: 200px;">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="file" name="foto" class="form-control-file" id="fotoInput">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        {{-- edit galeri (batal) --}}
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js "></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js "></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            ...
+            const editButtons = document.querySelectorAll('.btn-edit');
+            editButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const judul = this.getAttribute('data-judul');
+                    const deskripsi = this.getAttribute('data-deskripsi');
+                    const tanggal = this.getAttribute('data-tanggal');
+                    const foto = this.getAttribute('data-foto');
+                    const action = this.getAttribute('data-action');
+
+                    document.getElementById('editId').value = id;
+                    document.getElementById('editJudul').value = judul;
+                    document.getElementById('editDeskripsi').value = deskripsi;
+                    document.getElementById('editTanggal').value = tanggal;
+                    document.getElementById('currentFoto').src = foto;
+                    document.getElementById('editForm').action = action;
+                });
+            });
+        });
+    </script>
 @endsection
+
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
