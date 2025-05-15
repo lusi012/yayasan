@@ -1,4 +1,3 @@
-@section('content')
     <nav>
         <div>
             <img alt="image" src="{{ asset('tmp_admin/logo/logo1.jpg') }}">
@@ -30,4 +29,3 @@
             </li>
         </ul>
     </nav>
-@endsection

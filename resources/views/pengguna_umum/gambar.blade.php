@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,7 +14,7 @@
     <header>
         <div>
             {{-- Navbar --}}
-            @include('pengguna_umum.layout.navbar')
+{{-- @include('pengguna_umum.layout.navbar')
             @yield('content')
         </div>
     </header>
@@ -49,4 +49,29 @@
     </footer>
 </body>
 
-</html>
+</html> --}}
+
+@extends('pengguna_umum.layout.main')
+
+@section('title', 'Gallery - Yayasan Cahaya Ayu Kota Pontianak')
+
+@section('content')
+    <h1 class="text-5xl font-extrabold mb-10 text-center text-gray-900 dark:text-black">GALERI</h1>
+
+    <div class="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center">
+        @foreach ($galleries as $gallery)
+            <div
+                class="overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition duration-300 bg-white dark:bg-gray-800 w-64">
+                <img src="{{ asset('storage/' . $gallery->foto) }}" alt="{{ $gallery->judul }}"
+                    class="w-full h-auto max-h-[400px] object-contain" loading="lazy" />
+
+                <div class="p-4">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ $gallery->judul }}</h2>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                        Tanggal: {{ \Carbon\Carbon::parse($gallery->tanggal)->format('d M Y') }}
+                    </p>
+                </div>
+            </div>
+        @endforeach
+    </div>
+@endsection
