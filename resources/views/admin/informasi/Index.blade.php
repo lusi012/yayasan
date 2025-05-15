@@ -55,16 +55,15 @@
                                                     </td>
                                                     <td>
                                                         {{-- Edit --}}
-                                                        <button class="btn btn-primary btn-sm btn-edit"
+                                                        <button class="btn btn-primary btn-sm edit-button"
                                                             data-id="{{ $informasi->id_informasi }}"
                                                             data-judul="{{ $informasi->judul }}"
                                                             data-deskripsi="{{ $informasi->deskripsi }}"
-                                                            data-tanggal="{{ $informasi->tanggal }}"
-                                                            data-foto="{{ asset('storage/' . $informasi->foto) }}"
-                                                            data-action="{{ route('admin.informasi.update', $informasi->id_informasi) }}"
-                                                            data-toggle="modal" data-target="#editModal" title="Edit">
+                                                            data-tanggal="{{ \Carbon\Carbon::parse($informasi->tanggal)->format('Y-m-d') }}"
+                                                            data-foto="{{ $informasi->foto }}" title="Edit">
                                                             <i class="fas fa-edit"></i>
                                                         </button>
+
 
 
                                                         {{-- Tombol hapus --}}
@@ -140,14 +139,14 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" id="btnBatal">Batal</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-
     {{-- Edit informasi --}}
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
         aria-hidden="true">
@@ -157,7 +156,7 @@
                 @method('PUT')
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editModalLabel">Edit Informasi</h5>
+                        <h5 class="modal-title" id="editModalLabel">Edit Galeri</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -166,18 +165,17 @@
                         <input type="hidden" id="editId" name="id">
 
                         <div class="form-group">
-                            <label>Judul</label>
+                            <label for="editJudul">Judul</label>
                             <input type="text" id="editJudul" name="judul" class="form-control" required>
                         </div>
 
                         <div class="form-group">
-                            <label>Deskripsi</label>
-                            <textarea id="editDeskripsi" name="deskripsi" class="form-control" rows="4" required></textarea>
+                            <label for="editDeskripsi">Deskripsi</label>
+                            <input type="text" id="editDeskripsi" name="deskripsi" class="form-control" required>
                         </div>
 
-
                         <div class="form-group">
-                            <label>Tanggal</label>
+                            <label for="editTanggal">Tanggal</label>
                             <input type="date" id="editTanggal" name="tanggal" class="form-control">
                         </div>
 
@@ -188,11 +186,11 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="fotoInput">Ganti Gambar</label>
                             <input type="file" name="foto" class="form-control-file" id="fotoInput">
                         </div>
                     </div>
                     <div class="modal-footer">
-                        {{-- edit galeri (batal) --}}
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                     </div>
@@ -200,32 +198,47 @@
             </form>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js "></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js "></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            ...
-            const editButtons = document.querySelectorAll('.btn-edit');
-            editButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const id = this.getAttribute('data-id');
-                    const judul = this.getAttribute('data-judul');
-                    const deskripsi = this.getAttribute('data-deskripsi');
-                    const tanggal = this.getAttribute('data-tanggal');
-                    const foto = this.getAttribute('data-foto');
-                    const action = this.getAttribute('data-action');
+        $(document).ready(function() {
+            $('.edit-button').on('click', function() {
+                const id = $(this).data('id');
+                const judul = $(this).data('judul');
+                const deskripsi = $(this).data('deskripsi');
+                const tanggal = $(this).data('tanggal');
+                const foto = $(this).data('foto');
 
-                    document.getElementById('editId').value = id;
-                    document.getElementById('editJudul').value = judul;
-                    document.getElementById('editDeskripsi').value = deskripsi;
-                    document.getElementById('editTanggal').value = tanggal;
-                    document.getElementById('currentFoto').src = foto;
-                    document.getElementById('editForm').action = action;
-                });
+                $('#editId').val(id);
+                $('#editJudul').val(judul);
+                $('#editDeskripsi').val(deskripsi);
+                $('#editTanggal').val(tanggal);
+
+                const fotoPath = foto ? "{{ asset('storage') }}/" + foto : '';
+                $('#currentFoto').attr('src', fotoPath);
+
+                $('#editForm').attr('action', "{{ url('admin/informasi') }}/" + id);
+                $('#editModal').modal('show');
+            });
+
+            $('#fotoInput').on('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#currentFoto').attr('src', e.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    $('#currentFoto').attr('src', '');
+                }
             });
         });
     </script>
+
 @endsection
 
 

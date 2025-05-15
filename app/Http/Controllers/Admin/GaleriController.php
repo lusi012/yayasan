@@ -102,7 +102,8 @@ class GaleriController extends Controller
         }
 
         $galeri->save();
+Alert::toast('Data galeri berhasil diupdate', 'success');
 
-        return redirect()->route('admin.galeri.index')->with('success', 'Galeri berhasil diupdate.');
+        return redirect()->route('admin.galeri.index');
     }
 }

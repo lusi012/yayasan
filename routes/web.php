@@ -12,16 +12,12 @@ use App\Http\Controllers\Userumum\GambarController;
 
 // Route umum yang bisa diakses semua orang
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/gambar', [GambarController::class, 'index'])->name('gambar');  // Pakai GambarController langsung
+Route::get('/gambar', [GambarController::class, 'index'])->name('gambar'); 
 Route::get('/informasi', [HomeController::class, 'informasi'])->name('informasi');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 
-// Route::get('/', [HomeController::class, 'index'])->name('home');
-// Route::get('/gambar', [HomeController::class, 'gambar'])->name('gambar');
-// Route::get('/informasi', [HomeController::class, 'informasi'])->name('informasi');
-// Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
-// Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+
 
 // Login routes
 Route::get('/login', [LoginController::class, 'index'])->name('admin.login')->middleware('guest');
@@ -46,6 +42,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin/informasi', [InformasiController::class, 'index'])->name('admin.informasi.index');
     Route::post('/admin/informasi-add', [InformasiController::class, 'store'])->name('admin.informasi.store');
     Route::delete('/admin/informasi/{id_informasi}', [InformasiController::class, 'destroy'])->name('admin.informasi.destroy');
+    Route::put('/admin/informasi/{id}', [InformasiController::class, 'update'])->name('admin.informasi.update');
     Route::put('/admin/informasi/{id_informasi}', [InformasiController::class, 'update'])->name('admin.informasi.update');
 
 });

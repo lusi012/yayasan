@@ -47,7 +47,7 @@ class InformasiController extends Controller
         $filename = Str::slug($request->judul) . '-' . \Carbon\Carbon::parse($request->tanggal)->format('Y-m-d') . '.' . $extension;
 
 
-        $path = $request->file('foto')->storeAs('galeri', $filename, 'public');
+        $path = $request->file('foto')->storeAs('informasi', $filename, 'public');
 
 
         Informasi::create([
@@ -80,4 +80,35 @@ class InformasiController extends Controller
 
         return redirect()->route('admin.informasi.index');
     }
+
+  public function update(Request $request, $id)
+{
+    $request->validate([
+        'judul' => 'required|string|max:255',
+        'tanggal' => 'required|date',
+        'deskripsi' => 'required|string',
+        'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // optional, tapi disarankan
+    ]);
+
+    $informasi = Informasi::findOrFail($id);
+
+    $informasi->judul = $request->judul;
+    $informasi->tanggal = $request->tanggal;
+    $informasi->deskripsi = $request->deskripsi;
+
+    if ($request->hasFile('foto')) {
+        // Hapus file lama jika ada
+        if ($informasi->foto && Storage::disk('public')->exists($informasi->foto)) {
+            Storage::disk('public')->delete($informasi->foto);
+        }
+
+        // Simpan file baru
+        $informasi->foto = $request->file('foto')->store('informasi', 'public');
+    }
+
+    $informasi->save();
+Alert::toast('Data Informasi berhasil diupdate', 'success');
+    return redirect()->route('admin.informasi.index');
+}
+
 }

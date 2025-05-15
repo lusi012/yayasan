@@ -41,10 +41,7 @@
                         <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i
                                     class="ion ion-search"></i></a></li>
                     </ul>
-                    {{-- <div class="search-element">
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn" type="submit"><i class="ion ion-search"></i></button>
-                    </div> --}}
+
                 </form>
                 <ul class="navbar-nav navbar-right">
 
@@ -53,14 +50,7 @@
                             <i class="ion ion-android-person d-lg-none"></i>
                             <div class="d-sm-none d-lg-inline-block">Admin </div>
                         </a>
-                        {{-- <div class="dropdown-menu dropdown-menu-right">
-                            <a href="profile.html" class="dropdown-item has-icon">
-                                <i class="ion ion-android-person"></i> Profile
-                            </a>
-                            <a href="#" class="dropdown-item has-icon">
-                                <i class="ion ion-log-out"></i> Logout
-                            </a>
-                        </div> --}}
+
                     </li>
                 </ul>
             </nav>
@@ -143,7 +133,7 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> --}}
 
     <script src="{{ asset('tmp_admin/dist/modules/jquery.min.js') }}"></script>
     <script src="{{ asset('tmp_admin/dist/modules/popper.js') }}"></script>
@@ -162,43 +152,7 @@
         document.getElementById("year").textContent = new Date().getFullYear();
     </script>
 
-    {{-- <script>
-        var ctx = document.getElementById("myChart").getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus"],
-                datasets: [{
-                    label: 'Statistics',
-                    data: [460, 458, 330, 502, 430, 610, 488],
-                    borderWidth: 2,
-                    backgroundColor: 'rgb(87,75,144)',
-                    borderColor: 'rgb(87,75,144)',
-                    borderWidth: 2.5,
-                    pointBackgroundColor: '#ffffff',
-                    pointRadius: 4
-                }]
-            },
-            options: {
-                legend: {
-                    display: false
-                },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                            stepSize: 150
-                        }
-                    }],
-                    xAxes: [{
-                        gridLines: {
-                            display: false
-                        }
-                    }]
-                },
-            }
-        });
-    </script> --}}
+
     <script src="{{ asset('tmp_admin/dist/js/scripts.js') }}"></script>
     <script src="{{ asset('tmp_admin/dist/js/custom.js') }}"></script>
 
