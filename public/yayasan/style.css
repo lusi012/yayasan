@@ -269,7 +269,18 @@ footer p {
 .judulhome h1 {
     text-align: center;
     font-size: 25px;
-    padding: 10px;
+    padding: 0px 10px 10px 10px;
+}
+.judulhome img{
+    margin-top: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    /* margin-right: 10px; */
+    /* padding: none; */
 }
 
 .slideshow-container {
@@ -338,3 +349,169 @@ footer p {
   font-size: 35px;
 margin : 0px 0px 25px 0px;
 }
+/* yayasan */
+.layanan {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f3f4f6;
+    margin: 0;
+    padding: 0;
+}
+
+.layanan-section {
+    padding: 4rem 1rem;
+    max-width: 1200px;
+    margin: auto;
+    background-color: #f9f9f9;
+}
+
+.judul-layanan {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.judul-layanan h2 {
+    font-size: 2rem;
+    color: #2563eb;
+    font-weight: 700;
+}
+
+.penanda {
+    width: 24px;
+    height: 24px;
+    margin: 1rem auto 0;
+    background-color: #2563eb;
+    transform: rotate(45deg);
+}
+
+.layanan-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.layanan-item {
+    background-color: white;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.layanan-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+    font-size: 2.5rem;
+    color: #2563eb;
+    margin-bottom: 1rem;
+}
+
+.layanan-item h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: #111827;
+}
+
+.layanan-item p {
+    font-size: 0.95rem;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+/* informasi terbaru */
+.informasi-terbaru-section {
+    padding: 1.5rem 1rem; /* px-4 py-6 */
+    background-color: rgb(214, 236, 250);
+    color: #1F2937; /* text-gray-800 */
+}
+
+.dark .informasi-terbaru-section {
+    background-color: #1F2937; /* bg-gray-800 */
+    color: white;
+}
+
+.informasi-terbaru-title {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 600; /* font-semibold */
+    margin-bottom: 1rem; /* mb-4 */
+    text-align: center;
+    color: inherit;
+}
+
+.informasi-terbaru-grid {
+    display: grid;
+    gap: 1rem; /* gap-4 */
+    grid-template-columns: repeat(1, 1fr); /* grid-cols-1 */
+    justify-items: center;
+}
+
+@media (min-width: 640px) {
+    .informasi-terbaru-grid {
+        grid-template-columns: repeat(2, 1fr); /* sm:grid-cols-2 */
+    }
+}
+
+@media (min-width: 768px) {
+    .informasi-terbaru-grid {
+        grid-template-columns: repeat(3, 1fr); /* md:grid-cols-3 */
+    }
+}
+
+.informasi-item {
+    background-color: #f9f9f9;
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+                0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+    overflow: hidden;
+    width: 18rem; /* w-72 */
+    transition: transform 0.3s ease;
+}
+
+.informasi-item:hover {
+    transform: scale(1.05); /* hover:scale-105 */
+}
+
+.dark .informasi-item {
+    background-color: #111827; /* dark:bg-gray-900 */
+}
+
+.informasi-image {
+    width: 100%;
+    height: 12rem; /* h-48 */
+    object-fit: cover;
+}
+
+.informasi-content {
+    padding: 1rem; /* p-4 */
+}
+
+.informasi-judul {
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 600; /* font-semibold */
+    color: #1F2937; /* text-gray-900 */
+    margin-bottom: 0.25rem; /* mb-1 */
+}
+
+.dark .informasi-judul {
+    color: #E5E7EB; /* dark:text-gray-200 */
+}
+
+.informasi-deskripsi {
+    font-size: 0.875rem; /* text-sm */
+    color: #4B5563; /* text-gray-600 */
+    margin-bottom: 0.5rem; /* mb-2 */
+}
+
+.dark .informasi-deskripsi {
+    color: #9CA3AF; /* dark:text-gray-400 */
+}
+
+.informasi-tanggal {
+    font-size: 0.75rem; /* text-xs */
+    color: #6B7280; /* text-gray-500 */
+}
+

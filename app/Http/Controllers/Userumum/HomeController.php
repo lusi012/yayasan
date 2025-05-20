@@ -10,7 +10,12 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('pengguna_umum.home');
+        // return view('pengguna_umum.home');
+        // ambil 3 informasi terbaru berdasarkan tanggal terbaru
+        $terbaru = Informasi::orderBy('tanggal', 'desc')->take(3)->get();
+
+        return view('pengguna_umum.home', compact('terbaru'));
+
     }
     public function gambar()
     {

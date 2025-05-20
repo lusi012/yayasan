@@ -69,17 +69,80 @@
                     slideIndex = n - 1;
                     showSlides();
                 }
-
             </script>
         </article>
 
         <article class="judulhome">
+            <img alt="image" src="{{ asset('tmp_admin/logo/logo1.jpg') }}">
             <h1>
                 Lembaga Pelatihan Kerja Swasta <br>
                 Yayasan Cahaya Ayu
             </h1>
         </article>
 
+        {{-- layanan --}}
+        <article class="layanan">
+            <section class="layanan-section">
+                <div class="judul-layanan">
+                    <h2>LAYANAN</h2>
+                    <div class="penanda"></div>
+                </div>
+
+                <div class="layanan-container">
+                    <div class="layanan-item">
+                        <div class="icon"><i class="fas fa-home"></i></div>
+                        <h3>Asisten Rumah Tangga</h3>
+                        <p>Kami menyediakan layanan pelatihan untuk calon asisten rumah tangga yang profesional,
+                            terampil, dan siap kerja.</p>
+                    </div>
+                    <div class="layanan-item">
+                        <div class="icon"><i class="fas fa-user-nurse"></i></div>
+                        <h3>Perawat Lansia</h3>
+                        <p>Pelatihan khusus untuk menjadi pendamping dan perawat lansia dengan pembekalan pengetahuan
+                            dasar kesehatan dan etika kerja.</p>
+                    </div>
+                    <div class="layanan-item">
+                        <div class="icon"><i class="fas fa-baby"></i></div>
+                        <h3>Baby Sitter</h3>
+                        <p>Layanan pelatihan baby sitter yang berkompeten dalam merawat dan mendampingi anak dengan
+                            pendekatan kasih sayang dan profesional.</p>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        {{-- informassi terbaru --}}
+        <section class="informasi-terbaru-section">
+            <h2 class="informasi-terbaru-title">Informasi Terbaru</h2>
+
+            <div class="informasi-terbaru-grid">
+                @foreach ($terbaru as $info)
+                    <div class="informasi-item">
+                        <img src="{{ asset('storage/' . $info->foto) }}" alt="{{ $info->judul }}"
+                            class="informasi-image" loading="lazy">
+                        <div class="informasi-content">
+                            <h3 class="informasi-judul">{{ $info->judul }}</h3>
+                            <p class="informasi-deskripsi">
+                                {{ \Illuminate\Support\Str::limit($info->deskripsi, 80) }}
+                            </p>
+                            <p class="informasi-tanggal">Tanggal:
+                                {{ \Carbon\Carbon::parse($info->tanggal)->format('d M Y') }}</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div> <!-- Ini penutup grid informasi -->
+
+            <!-- Tombol Lihat Lainnya -->
+            <div class="mt-6 text-center">
+                <a href="{{ route('informasi') }}"
+                    class="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
+                    Lihat Lainnya
+                </a>
+
+            </div>
+
+            </div>
+        </section>
     </main>
 
     <footer>
