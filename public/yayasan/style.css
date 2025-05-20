@@ -332,3 +332,9 @@ footer p {
 .dot.active {
     background-color: #717171;
 }
+
+.galeri-heading {
+  text-align: center;
+  font-size: 35px;
+margin : 0px 0px 25px 0px;
+}

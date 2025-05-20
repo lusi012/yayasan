@@ -21,7 +21,7 @@
 
     <main>
         <section class="info-section">
-            <h1>CONTACT INFO</h1>
+            <h1>INFORMASI KONTAK</h1>
             <div class="info-container">
                 <!-- About Club -->
                 <div class="info-box">
@@ -37,7 +37,7 @@
                     <div class="icon-circle">
                         <i class="fas fa-phone-alt"></i>
                     </div>
-                    <h3>TELEPHONE</h3>
+                    <h3>TELEPON</h3>
                     <p>0852-4503-5678</p>
                 </div>
 
@@ -46,7 +46,7 @@
                     <div class="icon-circle">
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
-                    <h3>OUR OFFICE LOCATION</h3>
+                    <h3>LOKASI YAYASAN</h3>
                     <p>Jalan dr Wahidin gg. batas pandang lurus &#177 500 m cari gg. gaharu 2 suka mulia Kecamatan Pontianak
                         Barat, Sungai
                         Jawi Luar, Kec. Pontianak Kota, Kota Pontianak, Kalimantan Barat 78114</p>

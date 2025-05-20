@@ -9,22 +9,22 @@
         <ul>
             <li>
                 <a href="{{ route('home') }}">
-                    Home
+                    Beranda
                 </a>
             </li>
             <li>
                 <a href="{{ route('informasi') }}">
-                    Information
+                    Informasi
                 </a>
             </li>
             <li>
                 <a href="{{ route('gambar') }}">
-                    Gallery
+                    Galeri
                 </a>
             </li>
             <li>
                 <a href="{{ route('contact') }}">
-                    Contact
+                    Kontak
                 </a>
             </li>
         </ul>

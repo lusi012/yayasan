@@ -50,7 +50,8 @@
                                                             width="80px">
                                                     </td>
                                                     <td>{{ $informasi->judul }}</td>
-                                                    <td>{{ $informasi->deskripsi }}</td>
+                                                    <td>{{ Str::limit(strip_tags($informasi->deskripsi), 30, '...') }}</td>
+
                                                     <td>{{ \Carbon\Carbon::parse($informasi->tanggal)->format('d-m-Y') }}
                                                     </td>
                                                     <td>
@@ -63,8 +64,6 @@
                                                             data-foto="{{ $informasi->foto }}" title="Edit">
                                                             <i class="fas fa-edit"></i>
                                                         </button>
-
-
 
                                                         {{-- Tombol hapus --}}
 
