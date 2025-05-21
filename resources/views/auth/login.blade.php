@@ -35,35 +35,13 @@
             </div>
 
             <div class="options">
-                <label><input type="checkbox" name="remember"> Remember Me</label>
-                <a href="{{ route('auth.lupapassword') }}">Ubah Password</a>
+                {{-- <label><input type="checkbox" name="remember">Ingat Password</label> --}}
+                <a href="{{ route('auth.lupapassword') }}">Ubah Password?</a>
             </div>
 
             <button type="submit" class="login-btn">Login</button>
         </form>
     </div>
-
-
-    {{-- <div class="wrapper">
-        <form action="{{ route('admin.loginproses') }}" method="POST">
-            @csrf
-            <h1>YAYASAN CAHAYA AYU</h1>
-            <h2>LOGIN ADMIN</h2>
-            <div class="input-field">
-                <input type="text" name="username">
-                <label>Username</label>
-            </div>
-            <div class="input-field">
-                <input type="password" name="password" required>
-                <label>Password</label>
-            </div>
-            <div class="forget">
-
-                <a href="{{ route('auth.lupapassword') }}">Ubah password?</a>
-            </div>
-            <button type="submit">Log In</button>
-        </form>
-    </div> --}}
 </body>
 
 </html>

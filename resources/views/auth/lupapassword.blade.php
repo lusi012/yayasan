@@ -15,16 +15,27 @@
     <div class="wrapper">
         <form action="{{ route('admin.loginproses') }}" method="POST">
             @csrf
-            <h2>RESET PASSWORD ADMIN</h2>
+
+            <div class="form-header">
+                <a href="{{ route('admin.login') }}" class="back-link">← Kembali</a>
+            </div>
+
+            <div class="avatar">
+                <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar">
+            </div>
+
+            <h2>ATUR ULANG PASSWORD</h2>
+
             <div class="input-field">
-                <input type="text" name="username">
                 <label>Password</label>
+                <input type="password" name="password" required>
             </div>
             <div class="input-field">
-                <input type="password" name="password" required>
                 <label>Konfirmasi Password</label>
+                <input type="password" name="password_confirmation" required>
             </div>
-            <button type="submit">Reset</button>
+
+            <button type="submit" class="login-btn">Reset</button>
         </form>
     </div>
 </body>
