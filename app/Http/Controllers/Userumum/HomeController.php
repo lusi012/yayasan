@@ -31,9 +31,9 @@ class HomeController extends Controller
     {
         return view('pengguna_umum.contact');
     }
-    // public function detail($id)
-    // {
-    //     $informasi = Informasi::findOrFail($id);
-    //     return view('pengguna_umum.informasi_detail', compact('informasi'));
-    // }
+    public function detail($id)
+     {
+         $informasi = Informasi::findOrFail($id);
+         return view('pengguna_umum.informasi_detail', compact('informasi'));
+     }
 }

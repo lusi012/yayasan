@@ -16,7 +16,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/gambar', [GambarController::class, 'index'])->name('gambar');
 Route::get('/informasi', [HomeController::class, 'informasi'])->name('informasi');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
-// Route::get('/informasi/{id}', [HomeController::class, 'detail'])->name('informasi.detail');
+Route::get('/informasi/{id}', [HomeController::class, 'detail'])->name('informasi.detail');
+Route::get('/informasi', [HomeController::class, 'informasi'])->name('informasi');
+
 
 
 
