@@ -3,7 +3,8 @@
 @section('content')
     <div class="main-content">
         <section class="section">
-            <h1 class="section-header">
+            <h1 class="section-header card shadow">
+
                 <div>Galeri</div>
             </h1>
             <div class="section-body">
@@ -68,8 +69,10 @@
                                                     </td>
                                                 </tr>
                                             @empty
-                                                <td colspan="6" class="text-center text-danger font-italic font-weight-bold">
-                                                    Hasil pencarian tidak ditemukan. Silakan coba dengan kata kunci yang berbeda.
+                                                <td colspan="6"
+                                                    class="text-center text-danger font-italic font-weight-bold">
+                                                    Hasil pencarian tidak ditemukan. Silakan coba dengan kata kunci yang
+                                                    berbeda.
                                                 </td>
                                             @endforelse
                                         </tbody>

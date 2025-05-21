@@ -3,7 +3,8 @@
 @section('content')
     <div class="main-content">
         <section class="section">
-            <h1 class="section-header">
+            <h1 class="section-header card shadow">
+
                 <div>Dashboard</div>
             </h1>
 
