@@ -41,7 +41,7 @@
                                             </tr>
                                         </thead>
 
-                                        <tbody>
+                                        {{-- <tbody>
                                             @foreach ($informasis as $index => $informasi)
                                                 <tr>
                                                     <td>{{ $index + 1 }}</td>
@@ -56,25 +56,25 @@
                                                     </td>
                                                     <td>
                                                         {{-- Edit --}}
-                                                        <button class="btn btn-primary btn-sm edit-button"
+                                        {{-- <button class="btn btn-primary btn-sm edit-button"
                                                             data-id="{{ $informasi->id_informasi }}"
                                                             data-judul="{{ $informasi->judul }}"
                                                             data-deskripsi="{{ $informasi->deskripsi }}"
                                                             data-tanggal="{{ \Carbon\Carbon::parse($informasi->tanggal)->format('Y-m-d') }}"
                                                             data-foto="{{ $informasi->foto }}" title="Edit">
                                                             <i class="fas fa-edit"></i>
-                                                        </button>
+                                                        </button> --}}
 
-                                                        {{-- Tombol hapus --}}
+                                        {{-- Tombol hapus --}}
 
-                                                        <!-- Tombol trigger SweetAlert -->
-                                                        <button type="button" class="btn btn-danger btn-sm swal-confirm"
+                                        <!-- Tombol trigger SweetAlert -->
+                                        {{-- <button type="button" class="btn btn-danger btn-sm swal-confirm"
                                                             data-id="{{ $informasi->id_informasi }}">
                                                             <i class="fas fa-trash"></i>
-                                                        </button>
+                                                        </button> --}}
 
-                                                        <!-- Form tersembunyi -->
-                                                        <form id="delete-form-{{ $informasi->id_informasi }}"
+                                        <!-- Form tersembunyi -->
+                                        {{-- <form id="delete-form-{{ $informasi->id_informasi }}"
                                                             action="{{ route('admin.informasi.destroy', $informasi->id_informasi) }}"
                                                             method="POST" style="display: none;">
                                                             @csrf
@@ -83,7 +83,52 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
+                                        </tbody> --}}
+                                        <tbody>
+                                            @forelse ($informasis as $index => $informasi)
+                                                <tr>
+                                                    <td>{{ $index + 1 }}</td>
+                                                    <td>
+                                                        <img src="{{ asset('storage/' . $informasi->foto) }}" alt="Gambar"
+                                                            width="80px">
+                                                    </td>
+                                                    <td>{{ $informasi->judul }}</td>
+                                                    <td>{{ Str::limit(strip_tags($informasi->deskripsi), 30, '...') }}</td>
+                                                    <td>{{ \Carbon\Carbon::parse($informasi->tanggal)->format('d-m-Y') }}
+                                                    </td>
+                                                    <td>
+                                                        <!-- tombol edit dan hapus -->
+                                                        <button class="btn btn-primary btn-sm edit-button"
+                                                            data-id="{{ $informasi->id_informasi }}"
+                                                            data-judul="{{ $informasi->judul }}"
+                                                            data-deskripsi="{{ $informasi->deskripsi }}"
+                                                            data-tanggal="{{ \Carbon\Carbon::parse($informasi->tanggal)->format('Y-m-d') }}"
+                                                            data-foto="{{ $informasi->foto }}" title="Edit">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger btn-sm swal-confirm"
+                                                            data-id="{{ $informasi->id_informasi }}">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                        <form id="delete-form-{{ $informasi->id_informasi }}"
+                                                            action="{{ route('admin.informasi.destroy', $informasi->id_informasi) }}"
+                                                            method="POST" style="display: none;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="6"
+                                                        class="text-center text-danger font-italic font-weight-bold">
+                                                        Hasil pencarian tidak ditemukan. Silakan coba dengan kata kunci yang
+                                                        berbeda.
+                                                    </td>
+                                                </tr>
+                                            @endforelse
                                         </tbody>
+
 
 
                                     </table>

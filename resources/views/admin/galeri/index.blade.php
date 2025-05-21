@@ -38,6 +38,44 @@
                                         </thead>
 
                                         <tbody>
+                                            @forelse ($galeris as $index => $galeri)
+                                                <tr>
+                                                    <td>{{ $index + 1 }}</td>
+                                                    <td>
+                                                        <img src="{{ asset('storage/' . $galeri->foto) }}" alt="Gambar"
+                                                            style="width: 100px; height: auto;">
+                                                    </td>
+                                                    <td>{{ $galeri->judul }}</td>
+                                                    <td>{{ \Carbon\Carbon::parse($galeri->tanggal)->format('d-m-Y') }}</td>
+                                                    <td>
+                                                        <button class="btn btn-primary btn-sm edit-button"
+                                                            data-id="{{ $galeri->id_galeri }}"
+                                                            data-judul="{{ $galeri->judul }}"
+                                                            data-tanggal="{{ \Carbon\Carbon::parse($galeri->tanggal)->format('Y-m-d') }}"
+                                                            data-foto="{{ $galeri->foto }}" title="Edit">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger btn-sm swal-confirm"
+                                                            data-id="{{ $galeri->id_galeri }}">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                        <form id="delete-form-{{ $galeri->id_galeri }}"
+                                                            action="{{ route('admin.galeri.destroy', $galeri->id_galeri) }}"
+                                                            method="POST" style="display: none;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <td colspan="6" class="text-center text-danger font-italic font-weight-bold">
+                                                    Hasil pencarian tidak ditemukan. Silakan coba dengan kata kunci yang berbeda.
+                                                </td>
+                                            @endforelse
+                                        </tbody>
+
+
+                                        {{-- <tbody>
                                             @foreach ($galeris as $index => $galeri)
                                                 <tr>
                                                     <td>{{ $index + 1 }}</td>
@@ -49,7 +87,7 @@
                                                     <td>{{ \Carbon\Carbon::parse($galeri->tanggal)->format('d-m-Y') }}</td>
                                                     <td>
                                                         {{-- Tombol edit --}}
-                                                        <button class="btn btn-primary btn-sm edit-button"
+                                        {{-- <button class="btn btn-primary btn-sm edit-button"
                                                             data-id="{{ $galeri->id_galeri }}"
                                                             data-judul="{{ $galeri->judul }}"
                                                             data-tanggal="{{ \Carbon\Carbon::parse($galeri->tanggal)->format('Y-m-d') }}"
@@ -59,8 +97,8 @@
 
                                                         {{-- Tombol hapus --}}
 
-                                                        <!-- Tombol trigger SweetAlert -->
-                                                        <button type="button" class="btn btn-danger btn-sm swal-confirm"
+                                        <!-- Tombol trigger SweetAlert -->
+                                        {{-- <button type="button" class="btn btn-danger btn-sm swal-confirm"
                                                             data-id="{{ $galeri->id_galeri }}">
                                                             <i class="fas fa-trash"></i>
                                                         </button>
@@ -75,7 +113,7 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
-                                        </tbody>
+                                        </tbody> --}}
                                     </table>
                                     <!-- Tambahkan ini di bawah tabel -->
                                     <div class="d-flex justify-content-center">

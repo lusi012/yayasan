@@ -15,7 +15,6 @@ class HomeController extends Controller
         $terbaru = Informasi::orderBy('tanggal', 'desc')->take(3)->get();
 
         return view('pengguna_umum.home', compact('terbaru'));
-
     }
     public function gambar()
     {
@@ -32,8 +31,8 @@ class HomeController extends Controller
         return view('pengguna_umum.contact');
     }
     public function detail($id)
-     {
-         $informasi = Informasi::findOrFail($id);
-         return view('pengguna_umum.informasi_detail', compact('informasi'));
-     }
+    {
+        $informasi = Informasi::findOrFail($id);
+        return view('pengguna_umum.informasi_detail', compact('informasi'));
+    }
 }

@@ -85,8 +85,14 @@
                                 <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
                                     {{ Str::limit($informasi->deskripsi, 100) }}
                                 </p>
-                                <a href="{{ route('informasi.detail', $informasi->id) }}"
-                                    class="text-blue-500 text-sm font-semibold mt-2 inline-block">Baca Selengkapnya</a>
+                                <button
+                                    onclick="window.location.href='{{ route('informasi.detail', $informasi->id_informasi) }}'"
+                                    class="text-blue-600 dark:text-blue-400 text-sm font-semibold focus:outline-none">
+                                    Details
+                                </button>
+
+                                {{-- <a href="{{ route('informasi.detail', $informasi->id) }}"
+                                    class="text-blue-500 text-sm font-semibold mt-2 inline-block">Baca Selengkapnya</a> --}}
 
                                 <p class="text-xs text-gray-500 mt-1">Tanggal:
                                     {{ \Carbon\Carbon::parse($informasi->tanggal)->format('d M Y') }}</p>
