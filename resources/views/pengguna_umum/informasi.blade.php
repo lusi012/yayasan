@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Information - Yayasan Cahaya Ayu Kota Pontianak</title>
+    <title>Informasi - Yayasan Cahaya Ayu Kota Pontianak</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('yayasan/style.css') }}">
@@ -33,8 +33,10 @@
                 <h1>Tentang Perusahaan</h1>
                 <p>LPKS Cahaya Ayu adalah sebuah instansi pemerintah, dibawah naungan departemen tenaga kerja
                     (DEPNAKER).
-                    Yayasan Cahaya Ayu merupakan Lembaga Pelatihan kerja swasta yang menyediakan keterampilan pelatihan
-                    tenaga kerja dan memenuhi kebutuhan masyarakat akan pelatihan keterampilan yang dapat meningkatkan
+                    Yayasan Cahaya Ayu merupakan Lembaga Pelatihan kerja swasta yang menyediakan keterampilan
+                    pelatihan
+                    tenaga kerja dan memenuhi kebutuhan masyarakat akan pelatihan keterampilan yang dapat
+                    meningkatkan
                     peluang kerja dan kemandirian ekonomi.
                 </p>
             </article>

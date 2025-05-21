@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $informasi->judul }}</title>
+    <link rel="icon" type="image/png" href="{{ asset('tmp_admin/logo/logo1.jpg') }}">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -26,8 +27,6 @@
                 class="w-full max-h-[550px] object-cover rounded-lg shadow-md mx-auto" />
             {{-- <img src="{{ asset('storage/' . $informasi->foto) }}" alt="{{ $informasi->judul }}"
                 class="w-[600px] h-auto object-contain rounded-lg shadow-md mx-auto" /> --}}
-
-
 
         </div>
 

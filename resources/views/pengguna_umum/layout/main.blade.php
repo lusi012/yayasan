@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>@yield('title')</title>
+    <link rel="icon" type="image/png" href="{{ asset('tmp_admin/logo/logo1.jpg') }}">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('yayasan/style.css') }}">
 </head>
+
 <body>
     <header>
         {{-- Memanggil navbar dari file terpisah --}}
@@ -28,4 +32,5 @@
         </ul>
     </footer>
 </body>
+
 </html>

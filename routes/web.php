@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GaleriController;
 use App\Http\Controllers\Admin\InformasiController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LupapasswordController;
 use Illuminate\Support\Facades\Route;
@@ -34,19 +35,24 @@ Route::post('/lupapasswordproses', [LupapasswordController::class, 'lupapassword
 
 
 // Protected routes
-Route::middleware(['admin'])->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/galeri', [GaleriController::class, 'index'])->name('admin.galeri.index');
     Route::post('/admin/galeri', [GaleriController::class, 'store'])->name('admin.galeri.store');
     Route::delete('/admin/galeri/{id_galeri}', [GaleriController::class, 'destroy'])->name('admin.galeri.destroy');
     Route::put('/admin/galeri/{id_galeri}', [GaleriController::class, 'update'])->name('admin.galeri.update');
-    Route::put('/admin/galeri/{id}', [GaleriController::class, 'update'])->name('admin.galeri.update');
+    // Route::put('/admin/galeri/{id}', [GaleriController::class, 'update'])->name('admin.galeri.update');
 
 
     Route::get('/admin/informasi', [InformasiController::class, 'index'])->name('admin.informasi.index');
     Route::post('/admin/informasi-add', [InformasiController::class, 'store'])->name('admin.informasi.store');
     Route::delete('/admin/informasi/{id_informasi}', [InformasiController::class, 'destroy'])->name('admin.informasi.destroy');
-    Route::put('/admin/informasi/{id}', [InformasiController::class, 'update'])->name('admin.informasi.update');
+    // Route::put('/admin/informasi/{id}', [InformasiController::class, 'update'])->name('admin.informasi.update');
     Route::put('/admin/informasi/{id_informasi}', [InformasiController::class, 'update'])->name('admin.informasi.update');
+
+    Route::get('/admin/profile', [ProfileController::class, 'index'])->name('admin.profile.index');
+    Route::post('/admin/profile/update', [ProfileController::class, 'update'])->name('admin.profile.update');
+
+
 
 });

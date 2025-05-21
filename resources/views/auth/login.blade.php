@@ -18,7 +18,7 @@
 
             <div class="avatar">
                 {{-- <img src="{{ asset('avatar.png') }}" alt="Avatar"> --}}
-                <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar">
+                <img src="{{ asset('tmp_admin/logo/logo1.jpg') }}" alt="Avatar">
             </div>
 
             <h2>LOGIN ADMIN</h2>

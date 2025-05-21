@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no"
         name="viewport">
     <title>@yield('title', 'Dashboard')</title>
-
+    <link rel="icon" type="image/png" href="{{ asset('tmp_admin/logo/logo1.jpg') }}">
     <link rel="stylesheet" href="{{ asset('tmp_admin/dist/modules/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('tmp_admin/dist/modules/ionicons/css/ionicons.min.css') }}">
     <link rel="stylesheet"
@@ -22,8 +22,6 @@
 
     <!-- Link JS Bootstrap 5 (termasuk Popper.js) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
-
 
 </head>
 
@@ -85,12 +83,15 @@
                                 <span>Informasi</span></a>
                         </li>
                         <li>
+                            <a href="{{ route('admin.profile.index') }}"><i class="ion ion-gear-a"></i>
+                                <span>Pengaturan</span></a>
+                        </li>
+                        <li>
                             <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
                                 <i class="ion ion-log-out"></i>
                                 <span>Logout</span>
                             </a>
                         </li>
-
 
                     </ul>
 
@@ -145,12 +146,9 @@
     <script src="{{ asset('tmp_admin/dist/modules/chart.min.js') }}"></script>
     <script src="{{ asset('tmp_admin/dist/modules/summernote/summernote-lite.js') }}"></script>
 
-
-
     <script>
         document.getElementById("year").textContent = new Date().getFullYear();
     </script>
-
 
     <script src="{{ asset('tmp_admin/dist/js/scripts.js') }}"></script>
     <script src="{{ asset('tmp_admin/dist/js/custom.js') }}"></script>

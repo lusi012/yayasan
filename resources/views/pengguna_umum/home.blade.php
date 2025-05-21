@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>User</title>
+    <title>Beranda-Yayasan Cahaya Ayu</title>
+    <link rel="icon" type="image/png" href="{{ asset('tmp_admin/logo/logo1.jpg') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('yayasan/style.css') }}">
@@ -27,7 +28,6 @@
                 <span class="dot" onclick="currentSlide(1)"></span>
                 <span class="dot" onclick="currentSlide(2)"></span>
             </div>
-
 
             <script>
                 let slideIndex = 0;
@@ -98,7 +98,8 @@
                     <div class="layanan-item">
                         <div class="icon"><i class="fas fa-user-nurse"></i></div>
                         <h3>Perawat Lansia</h3>
-                        <p>Pelatihan khusus untuk menjadi pendamping dan perawat lansia dengan pembekalan pengetahuan
+                        <p>Pelatihan khusus untuk menjadi pendamping dan perawat lansia dengan pembekalan
+                            pengetahuan
                             dasar kesehatan dan etika kerja.</p>
                     </div>
                     <div class="layanan-item">
@@ -153,7 +154,8 @@
                         class="fab fa-instagram"></i></a></li>
             <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
             <li><a href="#"><i class="fab fa-tiktok"></i></a></li>
-            <li><a href="https://www.youtube.com/@lpkscahayaayu_pontianak9918"><i class="fab fa-youtube"></i></a></li>
+            <li><a href="https://www.youtube.com/@lpkscahayaayu_pontianak9918"><i class="fab fa-youtube"></i></a>
+            </li>
         </ul>
     </footer>
 </body>

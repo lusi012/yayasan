@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>User</title>
+    <title>Kontak - Yayasan Cahaya Ayu</title>
+    <link rel="icon" type="image/png" href="{{ asset('tmp_admin/logo/logo1.jpg') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('yayasan/style.css') }}">
@@ -47,7 +48,8 @@
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
                     <h3>LOKASI YAYASAN</h3>
-                    <p>Jalan dr Wahidin gg. batas pandang lurus &#177 500 m cari gg. gaharu 2 suka mulia Kecamatan Pontianak
+                    <p>Jalan dr Wahidin gg. batas pandang lurus &#177 500 m cari gg. gaharu 2 suka mulia Kecamatan
+                        Pontianak
                         Barat, Sungai
                         Jawi Luar, Kec. Pontianak Kota, Kota Pontianak, Kalimantan Barat 78114</p>
                 </div>
@@ -64,12 +66,12 @@
     <footer>
         <p>&copy; 2023 Yayasan Cahaya Ayu Kota Pontianak</p>
         <ul class="social-footer">
-          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-          <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-          <li><a href="#"><i class="fab fa-tiktok"></i></a></li>
-          <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="#"><i class="fab fa-tiktok"></i></a></li>
+            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
         </ul>
-      </footer>
+    </footer>
 </body>
 
 </html>
