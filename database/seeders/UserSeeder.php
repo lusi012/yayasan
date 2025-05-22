@@ -17,7 +17,10 @@ class UserSeeder extends Seeder
         $userdata = [
             [
                 "username" => "admin",
-                "password"=> Hash::make("admin")
+                "password"=> Hash::make("admin"),
+                "nama"  => "Administarsi",
+                "role"  => "admin"
+
             ]
         ];
         foreach ($userdata as $user) {
