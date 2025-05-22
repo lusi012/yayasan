@@ -25,6 +25,7 @@ Route::get('/informasi', [HomeController::class, 'informasi'])->name('informasi'
 
 
 // Login routes
+// Route::get('/login', [LoginController::class, 'index'])->name('admin.login');
 Route::get('/login', [LoginController::class, 'index'])->name('admin.login')->middleware('guest');
 Route::post('/loginproses', [LoginController::class, 'login'])->name('admin.loginproses');
 Route::post('/logout', [LoginController::class, 'logout'])->name('admin.logout');

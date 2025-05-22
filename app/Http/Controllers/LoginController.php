@@ -26,7 +26,7 @@ class LoginController extends Controller
     if ($user && Hash::check($request->password, $user->password)) {
         // Simpan session manual
         session(['admin_logged_in' => true, 'admin_id' => $user->id]);
-
+// dd($user);
         Alert::toast('Login berhasil', 'success'); // toast harus sebelum return
 
         return redirect()->route('admin.dashboard');
