@@ -34,10 +34,10 @@
 
             </div>
 
-            <div class="options">
-                {{-- <label><input type="checkbox" name="remember">Ingat Password</label> --}}
+            {{-- <div class="options">
+                <label><input type="checkbox" name="remember">Ingat Password</label>
                 <a href="{{ route('auth.lupapassword') }}">Ubah Password?</a>
-            </div>
+            </div> --}}
 
             <button type="submit" class="login-btn">Login</button>
         </form>

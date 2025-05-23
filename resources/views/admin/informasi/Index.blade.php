@@ -75,216 +75,218 @@
                                                     </td>
                                                 </tr>
                                             @empty
-                                                <tr>
-                                                    <td colspan="6"
-                                                        class="text-center text-danger font-italic font-weight-bold">
+                                                <td colspan="6"
+                                                    class="text-center text-danger font-italic font-weight-bold">
+                                                    @if (request('search'))
                                                         Hasil pencarian tidak ditemukan. Silakan coba dengan kata kunci yang
                                                         berbeda.
-                                                    </td>
-                                                </tr>
-                                            @endforelse
-                                        </tbody>
+                                                    @else
+                                                        Data Kosong
+                                                    @endif
+                                                </td>
+                                            @endempty
+                                    </tbody>
 
 
 
-                                    </table>
-                                    <!-- Tambahkan ini di bawah tabel -->
-                                    <div class="d-flex justify-content-center">
-                                        {{ $informasis->appends(request()->input())->links() }}
-                                    </div>
-
+                                </table>
+                                <!-- Tambahkan ini di bawah tabel -->
+                                <div class="d-flex justify-content-center">
+                                    {{ $informasis->appends(request()->input())->links() }}
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
+</div>
+
+
+
+<!-- Modal tambah-->
+<div class="modal" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="tambahModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <form action="{{ route('admin.informasi.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tambahModalLabel">Tambah Informasi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Gambar</label>
+                        <input type="file" name="foto" class="form-control-file" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Judul</label>
+                        <input type="text" name="judul" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Deskripsi</label>
+                        <textarea name="deskripsi" class="form-control" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Tanggal</label>
+                        <input type="date" name="tanggal" class="form-control" required>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </div>
+        </form>
     </div>
+</div>
+{{-- Edit informasi --}}
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <form id="editForm" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Galeri</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="editId" name="id">
 
-
-
-    <!-- Modal tambah-->
-    <div class="modal" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="tambahModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <form action="{{ route('admin.informasi.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="tambahModalLabel">Tambah Informasi</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                    <div class="form-group">
+                        <label for="editJudul">Judul</label>
+                        <input type="text" id="editJudul" name="judul" class="form-control" required>
                     </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Gambar</label>
-                            <input type="file" name="foto" class="form-control-file" required>
-                        </div>
 
-                        <div class="form-group">
-                            <label>Judul</label>
-                            <input type="text" name="judul" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Deskripsi</label>
-                            <textarea name="deskripsi" class="form-control" rows="4" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Tanggal</label>
-                            <input type="date" name="tanggal" class="form-control" required>
-                        </div>
-
+                    <div class="form-group">
+                        <label for="editDeskripsi">Deskripsi</label>
+                        <input type="text" id="editDeskripsi" name="deskripsi" class="form-control" required>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
 
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    <div class="form-group">
+                        <label for="editTanggal">Tanggal</label>
+                        <input type="date" id="editTanggal" name="tanggal" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gambar (Kosongkan jika tidak diubah)</label><br>
+                        <img id="currentFoto" src="" alt="Foto Galeri" class="img-thumbnail"
+                            style="max-height: 200px;">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fotoInput">Ganti Gambar</label>
+                        <input type="file" name="foto" class="form-control-file" id="fotoInput">
                     </div>
                 </div>
-            </form>
-        </div>
-    </div>
-    {{-- Edit informasi --}}
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <form id="editForm" method="POST" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editModalLabel">Edit Galeri</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <input type="hidden" id="editId" name="id">
-
-                        <div class="form-group">
-                            <label for="editJudul">Judul</label>
-                            <input type="text" id="editJudul" name="judul" class="form-control" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="editDeskripsi">Deskripsi</label>
-                            <input type="text" id="editDeskripsi" name="deskripsi" class="form-control" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="editTanggal">Tanggal</label>
-                            <input type="date" id="editTanggal" name="tanggal" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Gambar (Kosongkan jika tidak diubah)</label><br>
-                            <img id="currentFoto" src="" alt="Foto Galeri" class="img-thumbnail"
-                                style="max-height: 200px;">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="fotoInput">Ganti Gambar</label>
-                            <input type="file" name="foto" class="form-control-file" id="fotoInput">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('.edit-button').on('click', function() {
-                const id = $(this).data('id');
-                const judul = $(this).data('judul');
-                const deskripsi = $(this).data('deskripsi');
-                const tanggal = $(this).data('tanggal');
-                const foto = $(this).data('foto');
+<script>
+    $(document).ready(function() {
+        $('.edit-button').on('click', function() {
+            const id = $(this).data('id');
+            const judul = $(this).data('judul');
+            const deskripsi = $(this).data('deskripsi');
+            const tanggal = $(this).data('tanggal');
+            const foto = $(this).data('foto');
 
-                $('#editId').val(id);
-                $('#editJudul').val(judul);
-                $('#editDeskripsi').val(deskripsi);
-                $('#editTanggal').val(tanggal);
+            $('#editId').val(id);
+            $('#editJudul').val(judul);
+            $('#editDeskripsi').val(deskripsi);
+            $('#editTanggal').val(tanggal);
 
-                const fotoPath = foto ? "{{ asset('storage') }}/" + foto : '';
-                $('#currentFoto').attr('src', fotoPath);
+            const fotoPath = foto ? "{{ asset('storage') }}/" + foto : '';
+            $('#currentFoto').attr('src', fotoPath);
 
-                $('#editForm').attr('action', "{{ url('admin/informasi') }}/" + id);
-                $('#editModal').modal('show');
-            });
-
-            $('#fotoInput').on('change', function() {
-                const file = this.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        $('#currentFoto').attr('src', e.target.result);
-                    };
-                    reader.readAsDataURL(file);
-                } else {
-                    $('#currentFoto').attr('src', '');
-                }
-            });
+            $('#editForm').attr('action', "{{ url('admin/informasi') }}/" + id);
+            $('#editModal').modal('show');
         });
-    </script>
+
+        $('#fotoInput').on('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#currentFoto').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(file);
+            } else {
+                $('#currentFoto').attr('src', '');
+            }
+        });
+    });
+</script>
 
 @endsection
 
 
 @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const deleteButtons = document.querySelectorAll('.swal-confirm');
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const deleteButtons = document.querySelectorAll('.swal-confirm');
 
-            deleteButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const id = this.getAttribute('data-id');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const id = this.getAttribute('data-id');
 
-                    Swal.fire({
-                        title: 'Yakin ingin menghapus?',
-                        text: "Data yang dihapus tidak dapat dikembalikan!",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#e3342f',
-                        cancelButtonColor: '#6c757d',
-                        confirmButtonText: 'Ya, hapus!',
-                        cancelButtonText: 'Batal',
-                        width: '350px',
-                        heightAuto: false,
-                        didOpen: () => {
+                Swal.fire({
+                    title: 'Yakin ingin menghapus?',
+                    text: "Data yang dihapus tidak dapat dikembalikan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#e3342f',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal',
+                    width: '350px',
+                    heightAuto: false,
+                    didOpen: () => {
 
-                            const swalTitle = document.querySelector('.swal2-title');
-                            if (swalTitle) {
-                                swalTitle.style.fontSize =
-                                    '26px';
-                            }
-
-
-                            const swalText = document.querySelector('.swal2-text');
-                            if (swalText) {
-                                swalText.style.fontSize =
-                                    '12px';
-                            }
+                        const swalTitle = document.querySelector('.swal2-title');
+                        if (swalTitle) {
+                            swalTitle.style.fontSize =
+                                '26px';
                         }
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            document.getElementById('delete-form-' + id).submit();
+
+
+                        const swalText = document.querySelector('.swal2-text');
+                        if (swalText) {
+                            swalText.style.fontSize =
+                                '12px';
                         }
-                    });
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('delete-form-' + id).submit();
+                    }
                 });
             });
         });
-    </script>
+    });
+</script>
 @endpush
