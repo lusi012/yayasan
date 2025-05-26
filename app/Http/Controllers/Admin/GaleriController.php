@@ -32,32 +32,27 @@ class GaleriController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:8048',
+            'foto.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:8048',
             'tanggal' => 'required|date',
             'judul' => 'required|string|max:255',
         ]);
 
+        foreach ($request->file('foto') as $file) {
+            $extension = $file->getClientOriginalExtension();
+            $filename = Str::slug($request->judul) . '-' . uniqid() . '.' . $extension;
+            $path = $file->storeAs('galeri', $filename, 'public');
 
-        $extension = $request->file('foto')->getClientOriginalExtension();
+            Galeri::create([
+                'id_galeri' => Str::uuid(),
+                'foto' => $path,
+                'judul' => $request->judul,
+                'tanggal' => $request->tanggal,
+            ]);
+        }
 
-
-        $filename = Str::slug($request->judul) . '-' . \Carbon\Carbon::parse($request->tanggal)->format('Y-m-d') . '.' . $extension;
-
-
-        $path = $request->file('foto')->storeAs('galeri', $filename, 'public');
-
-
-        Galeri::create([
-            'id_galeri' => Str::uuid(),
-            'foto' => $path,
-            'judul' => $request->judul,
-            'tanggal' => $request->tanggal,
-        ]);
-
-        Alert::toast('Data Galeri berhasil ditambah', 'success');
+        Alert::toast('Semua foto berhasil ditambahkan', 'success');
         return redirect()->route('admin.galeri.index');
     }
-
 
     public function destroy($id_galeri)
     {
@@ -102,7 +97,7 @@ class GaleriController extends Controller
         }
 
         $galeri->save();
-Alert::toast('Data galeri berhasil diupdate', 'success');
+        Alert::toast('Data galeri berhasil diupdate', 'success');
 
         return redirect()->route('admin.galeri.index');
     }

@@ -73,7 +73,8 @@
                                                 <td colspan="6"
                                                     class="text-center text-danger font-italic font-weight-bold">
                                                     @if (request('search'))
-                                                        Hasil pencarian tidak ditemukan. Silakan coba dengan kata kunci yang berbeda.
+                                                        Hasil pencarian tidak ditemukan. Silakan coba dengan kata kunci yang
+                                                        berbeda.
                                                     @else
                                                         Data Kosong
                                                     @endif
@@ -154,7 +155,9 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Gambar</label>
-                        <input type="file" name="foto" class="form-control-file" id="fotoInput" required>
+                        {{-- <input type="file" name="foto" class="form-control-file" id="fotoInput" required> --}}
+                        <input type="file" name="foto[]" class="form-control-file" id="fotoInput" multiple required>
+
                         <!-- Tempat pratinjau foto -->
                         <div class="mt-2">
                             <img id="previewFoto" src="" alt="Pratinjau Foto"
@@ -181,22 +184,21 @@
 </div>
 <script>
     document.getElementById('fotoInput').addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        const preview = document.getElementById('previewFoto');
+        const files = event.target.files;
+        const container = document.getElementById('previewContainer');
+        container.innerHTML = ''; // Kosongkan pratinjau sebelumnya
 
-        if (file) {
+        Array.from(files).forEach(file => {
             const reader = new FileReader();
-
             reader.onload = function(e) {
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-            }
-
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.maxHeight = '150px';
+                img.style.margin = '5px';
+                container.appendChild(img);
+            };
             reader.readAsDataURL(file);
-        } else {
-            preview.src = '';
-            preview.style.display = 'none';
-        }
+        });
     });
 </script>
 <!-- Modal Edit -->
