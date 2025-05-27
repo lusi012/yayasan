@@ -111,10 +111,13 @@
     <footer>
         <p>&copy; 2023 Yayasan Cahaya Ayu Kota Pontianak</p>
         <ul class="social-footer">
-            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-            <li><a href="#"><i class="fab fa-tiktok"></i></a></li>
-            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+            < <li><a
+                    href="https://www.instagram.com/lpks_cahayaayu?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i
+                        class="fab fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fab fa-tiktok"></i></a></li>
+                <li><a href="https://www.youtube.com/@lpkscahayaayu_pontianak9918"><i class="fab fa-youtube"></i></a>
+                </li>
         </ul>
     </footer>
 </body>

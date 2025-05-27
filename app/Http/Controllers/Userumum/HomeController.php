@@ -35,4 +35,10 @@ class HomeController extends Controller
         $informasi = Informasi::findOrFail($id);
         return view('pengguna_umum.informasi_detail', compact('informasi'));
     }
+    public function detailBySlug($slug)
+{
+    $informasi = Informasi::where('judul', str_replace('-', ' ', $slug))->firstOrFail();
+    return view('pengguna_umum.informasi_detail', compact('informasi'));
+}
+
 }

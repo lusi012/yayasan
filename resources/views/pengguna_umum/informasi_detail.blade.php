@@ -4,6 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="{{ $informasi->judul }}">
+    <meta property="og:description" content="Deskripsi singkat dari informasi ini...">
+    <meta property="og:image" content="https://domain.com/path-to-image.jpg ">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="article">
     <title>{{ $informasi->judul }}</title>
     <link rel="icon" type="image/png" href="{{ asset('tmp_admin/logo/logo1.jpg') }}">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -45,7 +50,7 @@
 
             <!-- Tombol WhatsApp -->
             <div class="mb-4">
-                <a href="https://wa.me/?text={{ urlencode($informasi->judul . ' - ' . request()->fullUrl()) }}"
+                <a href="https://wa.me/?text={{ urlencode(url('/YayasanCahayaAyu/informasi/' . Str::slug($informasi->judul))) }}"
                     target="_blank"
                     class="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded transition">
                     <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 32 32">
