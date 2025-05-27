@@ -38,7 +38,7 @@ Route::post('/lupapasswordproses', [LupapasswordController::class, 'lupapassword
 
 // Protected routes
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/galeri', [GaleriController::class, 'index'])->name('admin.galeri.index');
     Route::post('/admin/galeri', [GaleriController::class, 'store'])->name('admin.galeri.store');
     Route::delete('/admin/galeri/{id_galeri}', [GaleriController::class, 'destroy'])->name('admin.galeri.destroy');
