@@ -29,7 +29,7 @@ class InformasiController extends Controller
         $informasis = $query->latest()->paginate(10);
 
 
-        return view('admin.informasi.index', compact('informasis', 'search'));
+        return view('admin.informasi.Index', compact('informasis', 'search'));
     }
     public function store(Request $request)
     {

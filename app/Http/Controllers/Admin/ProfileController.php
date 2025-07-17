@@ -13,7 +13,7 @@ class ProfileController extends Controller
 {
     public function index()
 {
-    $user = User::find(session('admin_id'));
+    $user = User::find(session('id'));
 
     if (!$user) {
         return redirect()->route('admin.login')->with('error', 'Silakan login terlebih dahulu.');
@@ -24,7 +24,7 @@ class ProfileController extends Controller
 
    public function update(Request $request)
 {
-        $user = User::find(session('admin_id'));
+        $user = User::find(session('id'));
 
     $user->nama = $request->nama;
     $user->username = $request->username;

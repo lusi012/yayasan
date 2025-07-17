@@ -8,13 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
     public function index(){
         return view('auth.login');
     }
-    public function login(Request $request)
+   public function login(Request $request)
 {
     $request->validate([
         'username' => 'required|string',
@@ -24,11 +25,12 @@ class LoginController extends Controller
     $user = User::where('username', $request->username)->first();
 
     if ($user && Hash::check($request->password, $user->password)) {
-        // Simpan session manual
-        session(['admin_logged_in' => true, 'admin_id' => $user->id]);
-// dd($user);
-        Alert::toast('Login berhasil', 'success'); // toast harus sebelum return
+        // Simpan session
+        Session::put('admin_logged_in', true);
+        Session::put('id', $user->id);
+        Session::put('username', $user->username); // tambahan jika dibutuhkan
 
+        Alert::toast('Login berhasil', 'success');
         return redirect()->route('admin.dashboard');
     }
 
@@ -37,7 +39,7 @@ class LoginController extends Controller
 }
 public function logout()
 {
-    session()->forget(['admin_logged_in', 'admin_id']);
+    session()->forget(['admin_logged_in', 'id']);
 
     // jika pakai SweetAlert
     Alert::toast('Berhasil logout', 'success');
