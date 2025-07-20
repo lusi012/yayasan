@@ -8,6 +8,7 @@ use App\Models\Galeri;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\File;
 
 
 class GaleriController extends Controller
@@ -28,77 +29,89 @@ class GaleriController extends Controller
         $galeris = $query->latest()->paginate(10);
         return view('admin.galeri.index', compact('galeris', 'search'));
     }
-
     public function store(Request $request)
-    {
-        $request->validate([
-            'foto.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:8048',
-            'tanggal' => 'required|date',
-            'judul' => 'required|string|max:255',
+{
+    $request->validate([
+        'foto.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:8048',
+        'tanggal' => 'required|date',
+        'judul' => 'required|string|max:255',
+    ]);
+
+    $uploadPath = public_path('uploads/galeri');
+    if (!File::exists($uploadPath)) {
+        File::makeDirectory($uploadPath, 0755, true);
+    }
+
+    foreach ($request->file('foto') as $file) {
+        $extension = $file->getClientOriginalExtension();
+        $filename = Str::slug($request->judul) . '-' . uniqid() . '.' . $extension;
+        $file->move($uploadPath, $filename); // pindahkan file
+
+        Galeri::create([
+            'id_galeri' => Str::uuid(),
+            'foto' => 'uploads/galeri/' . $filename,
+            'judul' => $request->judul,
+            'tanggal' => $request->tanggal,
         ]);
+    }
 
-        foreach ($request->file('foto') as $file) {
-            $extension = $file->getClientOriginalExtension();
-            $filename = Str::slug($request->judul) . '-' . uniqid() . '.' . $extension;
-            $path = $file->storeAs('galeri', $filename, 'public');
+    Alert::toast('Semua foto berhasil ditambahkan', 'success');
+    return redirect()->route('admin.galeri.index');
+}
 
-            Galeri::create([
-                'id_galeri' => Str::uuid(),
-                'foto' => $path,
-                'judul' => $request->judul,
-                'tanggal' => $request->tanggal,
-            ]);
+   public function update(Request $request, $id)
+{
+    $request->validate([
+        'judul' => 'required|string|max:255',
+        'tanggal' => 'required|date',
+        'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:8048',
+    ]);
+
+    $galeri = Galeri::findOrFail($id);
+    $galeri->judul = $request->judul;
+    $galeri->tanggal = $request->tanggal;
+
+    if ($request->hasFile('foto')) {
+        // Hapus foto lama jika ada
+        $oldFile = public_path($galeri->foto);
+        if (File::exists($oldFile)) {
+            File::delete($oldFile);
         }
 
-        Alert::toast('Semua foto berhasil ditambahkan', 'success');
-        return redirect()->route('admin.galeri.index');
+        // Simpan foto baru
+        $uploadPath = public_path('uploads/galeri');
+        if (!File::exists($uploadPath)) {
+            File::makeDirectory($uploadPath, 0755, true);
+        }
+
+        $file = $request->file('foto');
+        $extension = $file->getClientOriginalExtension();
+        $filename = Str::slug($request->judul) . '-' . uniqid() . '.' . $extension;
+        $file->move($uploadPath, $filename);
+
+        $galeri->foto = 'uploads/galeri/' . $filename;
     }
+
+    $galeri->save();
+    Alert::toast('Data galeri berhasil diupdate', 'success');
+
+    return redirect()->route('admin.galeri.index');
+}
 
     public function destroy($id_galeri)
-    {
+{
+    $galeri = Galeri::where('id_galeri', $id_galeri)->firstOrFail();
 
-        $galeri = Galeri::where('id_galeri', $id_galeri)->firstOrFail();
-
-        if ($galeri->foto && Storage::disk('public')->exists($galeri->foto)) {
-            Storage::disk('public')->delete($galeri->foto);
-        }
-
-
-        // if ($galeri->foto && Storage::disk('public')->exists($galeri->foto)) {
-        //     Storage::disk('public')->delete($galeri->foto);
-        // }
-
-        // Hapus data galeri dari database
-        $galeri->delete();
-
-        Alert::toast('Data galeri berhasil dihapus', 'success')->autoClose(3000);
-
-
-        return redirect()->route('admin.galeri.index');
+    // Hapus file dari public path (bukan storage)
+    $filePath = public_path($galeri->foto); // contoh: public/uploads/galeri/nama.jpg
+    if (File::exists($filePath)) {
+        File::delete($filePath);
     }
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'judul' => 'required|string|max:255',
-            'tanggal' => 'required|date',
-        ]);
 
-        $galeri = Galeri::findOrFail($id);
-        $galeri->judul = $request->judul;
-        $galeri->tanggal = $request->tanggal;
+    $galeri->delete();
 
-        // Jika kamu ingin memperbolehkan update gambar:
-        if ($request->hasFile('foto')) {
-            // Hapus gambar lama
-            Storage::delete('public/storage/' . $galeri->foto);
+    Alert::toast('Data galeri berhasil dihapus', 'success')->autoClose(3000);
+    return redirect()->route('admin.galeri.index');
+}
 
-            // Simpan gambar baru
-            $galeri->foto = $request->file('foto')->store('galeri', 'public');
-        }
-
-        $galeri->save();
-        Alert::toast('Data galeri berhasil diupdate', 'success');
-
-        return redirect()->route('admin.galeri.index');
-    }
 }

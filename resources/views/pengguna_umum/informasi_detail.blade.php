@@ -28,7 +28,7 @@
         <h1 class="text-4xl font-bold mb-4 text-center">{{ $informasi->judul }}</h1>
 
         <div class="mb-6">
-            <img src="{{ asset('storage/' . $informasi->foto) }}" alt="{{ $informasi->judul }}"
+            <img src="{{ asset($informasi->foto) }}" alt="{{ $informasi->judul }}"
                 class="w-full max-h-[550px] object-cover rounded-lg shadow-md mx-auto" />
             {{-- <img src="{{ asset('storage/' . $informasi->foto) }}" alt="{{ $informasi->judul }}"
                 class="w-[600px] h-auto object-contain rounded-lg shadow-md mx-auto" /> --}}

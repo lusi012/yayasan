@@ -81,7 +81,7 @@
                         <!-- Card -->
                         <div
                             class="overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition duration-300 bg-white dark:bg-gray-800 w-64">
-                            <img src="{{ asset('storage/' . $informasi->foto) }}" alt="{{ $informasi->judul }}"
+                            <img src="{{ asset($informasi->foto) }}" alt="{{ $informasi->judul }}"
                                 class="w-full h-48 object-cover" loading="lazy" />
                             <div class="p-4">
                                 <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">

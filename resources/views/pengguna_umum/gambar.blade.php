@@ -9,8 +9,8 @@
     <div class="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center">
         @foreach ($galleries as $gallery)
             <div class="overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition duration-300 bg-white dark:bg-gray-800 w-64 cursor-pointer"
-                onclick="openModal('{{ asset('storage/' . $gallery->foto) }}', '{{ $gallery->judul }}')">
-                <img src="{{ asset('storage/' . $gallery->foto) }}" alt="{{ $gallery->judul }}"
+                onclick="openModal('{{ asset($gallery->foto) }}', '{{ $gallery->judul }}')">
+                <img src="{{ asset($gallery->foto) }}" alt="{{ $gallery->judul }}"
                     class="w-full h-auto max-h-[400px] object-contain" loading="lazy" />
 
                 <div class="p-4">

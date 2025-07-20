@@ -45,7 +45,7 @@
                                                 <tr>
                                                     <td>{{ $index + 1 }}</td>
                                                     <td>
-                                                        <img src="{{ asset('storage/' . $informasi->foto) }}" alt="Gambar"
+                                                        <img src="{{ asset($informasi->foto) }}" alt="Gambar"
                                                             width="80px">
                                                     </td>
                                                     <td>{{ $informasi->judul }}</td>
