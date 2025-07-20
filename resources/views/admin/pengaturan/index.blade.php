@@ -21,8 +21,8 @@
                                     {{-- <label for="profile-picture" class="form-label d-block">Foto Profil</label> --}}
                                     @if ($user)
                                         @if ($user->foto)
-                                            <img src="{{ asset('storage/' . $user->foto) }}" alt="Foto"
-                                                class="img-thumbnail" width="300">
+                                            <img src="{{ asset($user->foto) }}" alt="Foto" class="img-thumbnail"
+                                                width="300">
                                         @else
                                             <img src="https://ui-avatars.com/api/?name= {{ urlencode($user->nama ?? 'User') }}"
                                                 class="img-thumbnail rounded-circle" width="300">
